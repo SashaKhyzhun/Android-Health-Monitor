@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.utils
+package com.sashakhyzhun.healthmonitor.utils.extension
 
 import timber.log.Timber
 

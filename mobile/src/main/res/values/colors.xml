@@ -6,4 +6,9 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="primary_text_dark">#212121</color>
+    <color name="primary_text_light">#FFF</color>
+    <color name="secondary_text">#757575</color>
+
+
 </resources>

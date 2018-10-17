@@ -1,7 +1,7 @@
 package com.sashakhyzhun.healthmonitor
 
 import android.app.Application
-import com.sashakhyzhun.healthmonitor.utils.ThreadAwareTree
+import com.sashakhyzhun.healthmonitor.utils.extension.ThreadAwareTree
 import timber.log.Timber
 
 class HealthMonitor : Application() {
@@ -12,6 +12,8 @@ class HealthMonitor : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(ThreadAwareTree)
         }
+
+        Timber.d("called")
 
     }
 

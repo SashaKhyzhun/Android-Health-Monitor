@@ -11,12 +11,14 @@ import com.sashakhyzhun.healthmonitor.ui.analytics.*
 import com.sashakhyzhun.healthmonitor.ui.history.HistoryFragment
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Timber.d("called")
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
@@ -25,12 +27,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_history -> {
-                loadFragment(HistoryFragment())
-                return true
-            }
             R.id.action_profile -> {
                 loadFragment(ProfileFragment())
+                return true
+            }
+            R.id.action_history -> {
+                loadFragment(HistoryFragment())
                 return true
             }
             R.id.action_challenges -> {
@@ -54,6 +56,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         transaction.replace(R.id.frame_layout, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("called")
     }
 
 }

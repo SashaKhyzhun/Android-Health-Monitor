@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android-Health-Monitor</string>
+
+    <string name="connectivity_status_no_paired_devices">
+        No paired bluetooth devices found.\nEnable bluetooth for synchronization
+    </string>
+
 </resources>
