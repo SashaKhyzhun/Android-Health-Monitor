@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "860799758199",
+    "firebase_url": "https://healthmonitor-fa37d.firebaseio.com",
+    "project_id": "healthmonitor-fa37d",
+    "storage_bucket": "healthmonitor-fa37d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860799758199:android:8f01ac3628549bc9",
+        "android_client_info": {
+          "package_name": "com.sashakhyzhun.healthmonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860799758199-4rrm3tj17qubsqgl29lrmb1tb58ap9f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuiwGnUyyoVYRLcTdN_XaqWFzXdFwiN3c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

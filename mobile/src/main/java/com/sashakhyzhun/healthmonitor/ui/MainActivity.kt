@@ -1,11 +1,16 @@
-package com.sashakhyzhun.healthmonitor
+package com.sashakhyzhun.healthmonitor.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.internal.NavigationMenuItemView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
+import com.sashakhyzhun.healthmonitor.*
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
+import com.sashakhyzhun.healthmonitor.ui.analytics.*
+import com.sashakhyzhun.healthmonitor.ui.history.HistoryFragment
+import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
+import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
