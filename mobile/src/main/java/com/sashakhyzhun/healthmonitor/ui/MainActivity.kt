@@ -8,7 +8,6 @@ import android.view.MenuItem
 import com.sashakhyzhun.healthmonitor.*
 import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.analytics.*
-import com.sashakhyzhun.healthmonitor.ui.history.HistoryFragment
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
 import timber.log.Timber
@@ -30,10 +29,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when (item.itemId) {
             R.id.action_profile -> {
                 loadFragment(ProfileFragment())
-                return true
-            }
-            R.id.action_history -> {
-                loadFragment(HistoryFragment())
                 return true
             }
             R.id.action_challenges -> {
@@ -59,9 +54,5 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         transaction.commit()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("called")
-    }
 
 }

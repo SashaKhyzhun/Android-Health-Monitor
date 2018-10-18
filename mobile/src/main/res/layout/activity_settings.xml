@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,10 +10,139 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TOP PART-->
+        <TextView
+            android:id="@+id/tvUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Units"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            />
 
         <TextView
-            android:id="@+id/text_view_units"
+            android:id="@+id/tvHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Height"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvUserHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Centimeters"
+            />
+
+        <View
+            android:id="@+id/viewLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            />
+
+        <TextView
+            android:id="@+id/tvWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Weight"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvUserWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Kilograms"
+            />
+
+        <View
+            android:id="@+id/viewLine2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Weight"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvUserDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Kilograms"
+            />
+
+        <View
+            android:id="@+id/viewLine3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            />
+
+        <TextView
+            android:id="@+id/tvEnergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Weight"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvUserEnergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Kilograms"
+            />
+
+        <View
+            android:id="@+id/viewLine4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            />
+
+        <!-- TOP PART-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="#e4e4e4" />
+
+        <TextView
+            android:id="@+id/tvGeneral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="General"
@@ -26,11 +156,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_something1">
+            android:id="@+id/layout_connectivity">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_connectivity"
+                android:id="@+id/tvConnectivityStatus"
                 android:text="Connectivity status"
                 android:textColor="#000"
                 android:layout_marginTop="8dp"
@@ -40,22 +170,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_connectivity_status"
+                android:id="@+id/tvUserConnectivity"
                 android:text="@string/connectivity_status_no_paired_devices"
                 android:textColor="@color/secondary_text"
-                android:layout_below="@+id/text_view_connectivity"
+                android:layout_below="@+id/tvConnectivityStatus"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 />
             <RadioButton
-                android:id="@+id/radio_button_connectivity_status"
+                android:id="@+id/rbConnectivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
+                android:clickable="false"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -73,44 +204,10 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_delete_all_tasks"
+            android:id="@+id/tvDeleteAllChallenges"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete all todos"
-            android:textColor="@color/primary_text_dark"
-            android:paddingTop="10dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="10dp"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e4e4e4" />
-
-        <TextView
-            android:id="@+id/text_view_delete_all_labels"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete all labels"
-            android:textColor="@color/primary_text_dark"
-            android:paddingTop="10dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="10dp"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e4e4e4" />
-
-        <TextView
-            android:id="@+id/text_view_tutorial_again"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quick tutorial again"
+            android:text="Delete all challenges"
             android:textColor="@color/primary_text_dark"
             android:paddingTop="10dp"
             android:paddingStart="16dp"
@@ -134,7 +231,7 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_contact"
+            android:id="@+id/tvContacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Contacts"
@@ -146,7 +243,7 @@
             />
 
         <TextView
-            android:id="@+id/text_view_send_feedback"
+            android:id="@+id/tvSendFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Send feedback"
@@ -163,7 +260,7 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_about"
+            android:id="@+id/tvAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="About"
@@ -180,7 +277,7 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_more_apps"
+            android:id="@+id/tvMoreApps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="More apps"
@@ -211,7 +308,7 @@
             />
 
         <TextView
-            android:id="@+id/text_view_share"
+            android:id="@+id/tvShare"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Share"
@@ -228,7 +325,7 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_rate_the_app"
+            android:id="@+id/tvRateTheApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rate the app"
@@ -245,10 +342,10 @@
             android:background="#e4e4e4" />
 
         <TextView
-            android:id="@+id/text_view_build_version"
+            android:id="@+id/tvBuildVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Build version 2.0.1"
+            android:text="Build version 1.0.345"
             android:textColor="#afafaf"
             android:paddingTop="10dp"
             android:paddingStart="16dp"
