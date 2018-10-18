@@ -17,12 +17,18 @@ public class PreferencesHelper implements IPreferencesHelper {
 
 
     private static final String PREFER_NAME = "health_monitor_pref";
-    private static final String KEY_IS_NEW_USER = "new_user";
     private static final String KEY_PREF_VERSION = "pref_version";
+
+    private static final String KEY_USER_IS_REGISTERED = "key_user_is_registered";
     private static final String KEY_USER_NAME = "key_user_name";
-    private static final String KEY_USER_EMAIL = "key_user_email";
     private static final String KEY_USER_PHONE = "key_user_phone";
+    private static final String KEY_USER_EMAIL = "key_user_email";
     private static final String KEY_USER_PHOTO = "key_user_photo";
+    private static final String KEY_USER_WIDTH = "key_user_width";
+    private static final String KEY_USER_HEIGHT = "key_user_height";
+    private static final String KEY_USER_BIRTHDAY = "key_user_BIRTHDAY";
+    private static final String KEY_USER_GENDER = "key_user_GENDER";
+
     private static final int PRIVATE_MODE = 0;
     private static final int PREF_VERSION = 0;
 
@@ -39,7 +45,7 @@ public class PreferencesHelper implements IPreferencesHelper {
 
     @Override
     public void createUserSession(@NonNull String name, @NonNull String email, @NonNull String phone, @NonNull Uri photo) {
-        editor.putBoolean(KEY_IS_NEW_USER, false);
+        editor.putBoolean(KEY_USER_IS_REGISTERED, true);
         editor.putInt(KEY_PREF_VERSION, 1);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_EMAIL, email);
@@ -51,14 +57,14 @@ public class PreferencesHelper implements IPreferencesHelper {
 
     @Override
     public void setIsRegisteredUser(boolean value) {
-        editor.putBoolean(KEY_IS_NEW_USER, value);
+        editor.putBoolean(KEY_USER_IS_REGISTERED, value);
         editor.apply();
         editor.commit();
     }
 
     @Override
     public boolean isRegisteredUser() {
-        return preferences.getBoolean(KEY_IS_NEW_USER, false);
+        return preferences.getBoolean(KEY_USER_IS_REGISTERED, false);
     }
 
 
@@ -115,6 +121,60 @@ public class PreferencesHelper implements IPreferencesHelper {
     }
 
 
+    @Override
+    public void setWidth(int n) {
+        editor.putInt(KEY_USER_WIDTH, n);
+        editor.apply();
+        editor.commit();
+    }
+    @Override
+    public int getWidth() {
+        return preferences.getInt(KEY_USER_WIDTH, 0);
+    }
+
+
+    @Override
+    public void setHeight(int n) {
+        editor.putInt(KEY_USER_HEIGHT, n);
+        editor.apply();
+        editor.commit();
+    }
+    @Override
+    public int getHeight() {
+        return preferences.getInt(KEY_USER_HEIGHT, 0);
+
+    }
+
+
+    @Override
+    public void setBirthday(long n) {
+        editor.putLong(KEY_USER_BIRTHDAY, n);
+        editor.apply();
+        editor.commit();
+    }
+    @Override
+    public long getBirthday() {
+        return preferences.getLong(KEY_USER_BIRTHDAY, 0L);
+
+    }
+
+
+    @Override
+    public void setGender(@NotNull String gender) {
+        editor.putString(KEY_USER_GENDER, gender);
+        editor.apply();
+        editor.commit();
+    }
+    @NotNull
+    @Override
+    public String getGender() {
+        return preferences.getString(KEY_USER_GENDER, "");
+    }
+
+
+
+
+
 
 
     @Override
@@ -123,7 +183,6 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
-
     @Override
     public int getPrefVersion() {
         return preferences.getInt(KEY_PREF_VERSION, 0);

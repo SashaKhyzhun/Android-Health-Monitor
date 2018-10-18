@@ -23,13 +23,14 @@ import java.security.NoSuchAlgorithmException
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var dm: AppDataManager
+    private lateinit var prefs: IPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Timber.d("called")
 
-        val prefs: IPreferencesHelper = PreferencesHelper(this)
+        prefs = PreferencesHelper(this)
         dm = AppDataManager(this, prefs)
 
         Timber.d("isRegisteredUser=${dm.isRegisteredUser()}")

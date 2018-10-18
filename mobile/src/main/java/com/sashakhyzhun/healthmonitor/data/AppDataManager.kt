@@ -65,4 +65,39 @@ class AppDataManager constructor(
     override fun getPhoneNumber(): String {
         return prefsHelper.getPhoneNumber()
     }
+
+    override fun setWidth(n: Int) {
+        prefsHelper.setWidth(n)
+    }
+
+    override fun getWidth(): Int {
+        return prefsHelper.getWidth()
+    }
+
+    override fun setHeight(n: Int) {
+        prefsHelper.setHeight(n)
+    }
+
+    override fun getHeight(): Int {
+        return prefsHelper.getHeight()
+    }
+
+    override fun setBirthday(n: Long) {
+        prefsHelper.setBirthday(n)
+    }
+
+    override fun getBirthday(): Long {
+        return prefsHelper.getBirthday()
+    }
+
+    override fun setGender(gender: String) {
+        prefsHelper.setGender(gender)
+    }
+
+    override fun getGender(): String {
+        return prefsHelper.getGender()
+    }
+
+
+
 }

@@ -103,6 +103,7 @@ class LoginActivity : AppCompatActivity() {
                 val isLoggedIn = accessToken != null && !accessToken.isExpired
 
                 Timber.d("facebook login: $isLoggedIn")
+                handleFacebookUser(accessToken)
             }
 
             override fun onCancel() {
@@ -194,6 +195,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun createNewUser(name: String, email: String, phone: String, photo: Uri) {
+        dm.setIsRegisteredUser(true)
+        Timber.d("isRegisteredUser=${dm.isRegisteredUser()}")
         dm.createUserSession(name = name, email = email, phone = phone, photo = photo)
         startActivity(Intent(this, MainActivity::class.java))
     }
