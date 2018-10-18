@@ -5,8 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 import android.widget.Toast
+import com.facebook.*
+import com.facebook.login.widget.LoginButton
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -24,25 +25,42 @@ import com.sashakhyzhun.healthmonitor.data.prefs.PreferencesHelper
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
 
 import timber.log.Timber
+import com.facebook.login.LoginResult
+import org.json.JSONException
+import org.json.JSONObject
+
 
 class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val RC_SIGN_IN = 9001
+        private const val EMAIL = "email"
+
     }
 
     private var mAuth: FirebaseAuth? = null
     private var progressDialog: ProgressDialog? = null
     private var mGoogleSignInClient: GoogleSignInClient? = null
 
+    private lateinit var facebookSignInButton: LoginButton
+    private lateinit var callbackManager: CallbackManager
+    private lateinit var prefs: IPreferencesHelper
+    private lateinit var dm: AppDataManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Timber.d("called")
 
+        val googleSignInButton = findViewById<SignInButton>(R.id.sign_in_button)
+        facebookSignInButton = findViewById(R.id.login_button)
+        facebookSignInButton.setReadPermissions(listOf(EMAIL))
+        callbackManager = CallbackManager.Factory.create()
 
-        val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
         progressDialog = ProgressDialog(this)
+
+        prefs = PreferencesHelper(this)
+        dm = AppDataManager(this, prefs)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,12 +72,8 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        signInButton.setOnClickListener { signIn() }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("called")
+        googleSignInButton.setOnClickListener { signInGoogle() }
+        facebookSignInButton.setOnClickListener { signInFacebook() }
     }
 
 
@@ -71,13 +85,34 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    public override fun onStart() {
-        super.onStart()
+    private fun hideProgressDialog() {
+        progressDialog!!.dismiss()
     }
 
-    private fun signIn() {
+    private fun signInGoogle() {
         val signInIntent = mGoogleSignInClient!!.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun signInFacebook() {
+        // Callback registration
+        facebookSignInButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                // App code
+                val accessToken = AccessToken.getCurrentAccessToken()
+                val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+                Timber.d("facebook login: $isLoggedIn")
+            }
+
+            override fun onCancel() {
+                // App code
+            }
+
+            override fun onError(exception: FacebookException) {
+                // App code
+            }
+        })
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -94,7 +129,9 @@ class LoginActivity : AppCompatActivity() {
                 // Google Sign In failed, update UI appropriately
                 Timber.i("Google sign in failed: $e")
             }
-
+        } else {
+            // facebook
+            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
 
@@ -110,7 +147,7 @@ class LoginActivity : AppCompatActivity() {
                         Timber.i("signInWithCredential:success")
                         val user = mAuth!!.currentUser
 
-                        handleUserCreating(user)
+                        handleGoogleUser(user)
 
                     } else {
                         // If sign in fails, display a message to the user.
@@ -122,11 +159,7 @@ class LoginActivity : AppCompatActivity() {
                 }
     }
 
-    private fun handleUserCreating(user: FirebaseUser?) {
-
-        val prefs: IPreferencesHelper = PreferencesHelper(this)
-        val dm = AppDataManager(this, prefs)
-
+    private fun handleGoogleUser(user: FirebaseUser?) {
         hideProgressDialog()
 
         val name = user?.displayName ?: ""
@@ -134,13 +167,39 @@ class LoginActivity : AppCompatActivity() {
         val number = user?.phoneNumber ?: ""
         val photo = user?.photoUrl ?: Uri.EMPTY
 
-        dm.createUserSession(name = name, email = email, phone = number, photo = photo)
+        createNewUser(name = name, email = email, phone = number, photo = photo)
+    }
+
+    private fun handleFacebookUser(currentAccessToken: AccessToken) {
+        val request = GraphRequest.newMeRequest(currentAccessToken) { jsonObject, _ ->
+            try {
+                val firstName = jsonObject?.getString("first_name")
+                val lastName = jsonObject?.getString("last_name")
+                val email = jsonObject?.getString("email")
+                val id = jsonObject?.getString("id")
+                val imageUrl = "https://graph.facebook.com/$id/picture?type=normal"
+
+                createNewUser("$firstName $lastName", email!!, "", Uri.parse(imageUrl))
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        val parameters = Bundle()
+        parameters.putString("fields", "first_name,last_name,email,id")
+        request.parameters = parameters
+        request.executeAsync()
+    }
+
+    private fun createNewUser(name: String, email: String, phone: String, photo: Uri) {
+        dm.createUserSession(name = name, email = email, phone = phone, photo = photo)
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-    private fun hideProgressDialog() {
-        progressDialog!!.dismiss()
-    }
+
+
 
 }
 

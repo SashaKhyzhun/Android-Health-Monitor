@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -39,11 +40,13 @@ class ProfileFragment : Fragment() {
     }
 
 
-    private fun signOut() {
-        // Firebase sign out
-        mAuth!!.signOut()
-        // Google sign out
-        mGoogleSignInClient!!.signOut()
+    private fun signOutGoogle() {
+        mAuth!!.signOut() // Firebase sign out
+        mGoogleSignInClient!!.signOut() // Google sign out
+    }
+
+    private fun signOutFacebook() {
+        LoginManager.getInstance().logOut()
     }
 
 }

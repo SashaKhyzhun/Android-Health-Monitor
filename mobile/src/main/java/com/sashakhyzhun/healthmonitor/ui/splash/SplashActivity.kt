@@ -11,6 +11,14 @@ import com.sashakhyzhun.healthmonitor.data.prefs.PreferencesHelper
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
 import com.sashakhyzhun.healthmonitor.ui.login.LoginActivity
 import timber.log.Timber
+import com.google.android.gms.common.util.IOUtils.toByteArray
+import android.content.pm.PackageManager
+import android.content.pm.PackageInfo
+import android.util.Base64
+import android.util.Log
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -25,7 +33,6 @@ class SplashActivity : AppCompatActivity() {
         dm = AppDataManager(this, prefs)
 
         Timber.d("isRegisteredUser=${dm.isRegisteredUser()}")
-
 
         Handler().postDelayed({
             performRedirection()

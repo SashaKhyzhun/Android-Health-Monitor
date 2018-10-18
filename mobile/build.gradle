@@ -61,6 +61,8 @@ dependencies {
     // Logging
     api 'com.jakewharton.timber:timber:4.7.1'
 
+    // Facebook
+    api 'com.facebook.android:facebook-login:[4,5)'
 
     // Test
     testImplementation 'junit:junit:4.12'
