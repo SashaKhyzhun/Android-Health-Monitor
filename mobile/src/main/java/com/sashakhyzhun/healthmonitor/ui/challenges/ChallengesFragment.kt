@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
+import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class ChallengesFragment : Fragment() {
@@ -35,13 +37,12 @@ class ChallengesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.challenges_fragment, container, false)
 
+        fab = view.findViewById(R.id.fab)
+        fab.setOnClickListener { startActivity<CreateChallengeActivity>() }
+
         rvChallenges = view.findViewById(R.id.rv_challenges)
         rvChallenges.adapter = adapter
         rvChallenges.layoutManager = LinearLayoutManager(context)
-
-
-        fab = view.findViewById(R.id.fab)
-        fab.setOnClickListener { toast("Fab") }
 
         onTouchIncomingListener = RecyclerTouchListener(activity, rvChallenges)
         onTouchIncomingListener
@@ -60,7 +61,6 @@ class ChallengesFragment : Fragment() {
 
 
         return view
-
     }
 
 

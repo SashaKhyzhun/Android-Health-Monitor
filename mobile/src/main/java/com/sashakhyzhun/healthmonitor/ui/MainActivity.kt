@@ -8,7 +8,7 @@ import android.view.MenuItem
 import com.sashakhyzhun.healthmonitor.*
 import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.analytics.*
-import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
+import com.sashakhyzhun.healthmonitor.ui.health_rate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
 import timber.log.Timber
 
