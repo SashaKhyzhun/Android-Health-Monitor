@@ -8,9 +8,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
 import org.jetbrains.anko.support.v4.toast
 
@@ -23,6 +23,8 @@ class ChallengesFragment : Fragment() {
     private lateinit var fab: FloatingActionButton
 
     private lateinit var adapter: ChallengesAdapter
+    private lateinit var onTouchIncomingListener: RecyclerTouchListener
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +43,35 @@ class ChallengesFragment : Fragment() {
         fab = view.findViewById(R.id.fab)
         fab.setOnClickListener { toast("Fab") }
 
+        onTouchIncomingListener = RecyclerTouchListener(activity, rvChallenges)
+        onTouchIncomingListener
+                //.setIndependentViews(R.id.rowButton)
+                .setSwipeOptionViews(R.id.layout_check_in, R.id.layout_give_up)
+                .setSwipeable(R.id.rowFG, R.id.rowBG) { viewID, position ->
+                    when (viewID) {
+                        R.id.layout_check_in -> {
+                            toast("1")
+                        }
+                        R.id.layout_give_up -> {
+                            toast("2")
+                        }
+                    }
+                }
 
-        //todo: slider for rv items like in barber.
 
         return view
 
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        rvChallenges.addOnItemTouchListener(onTouchIncomingListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        rvChallenges.removeOnItemTouchListener(onTouchIncomingListener)
     }
 
 }

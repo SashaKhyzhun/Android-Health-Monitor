@@ -10,5 +10,9 @@
     <color name="primary_text_light">#FFF</color>
     <color name="secondary_text">#757575</color>
 
+    <color name="swipe_option_green">#36CF8E</color>
+    <color name="swipe_option_blue">#3693D0</color>
+    <color name="swipe_option_purple">#ff1744</color>
+    <color name="swipe_option_orange">#d9a710</color>
 
 </resources>
