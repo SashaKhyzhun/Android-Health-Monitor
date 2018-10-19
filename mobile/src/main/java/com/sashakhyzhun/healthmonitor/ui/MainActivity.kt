@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
         Timber.d("called")
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_view)
@@ -27,12 +27,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_profile -> {
-                loadFragment(ProfileFragment())
-                return true
-            }
             R.id.action_challenges -> {
                 loadFragment(ChallengesFragment())
+                return true
+            }
+            R.id.action_profile -> {
+                loadFragment(ProfileFragment())
                 return true
             }
             R.id.action_analytics -> {

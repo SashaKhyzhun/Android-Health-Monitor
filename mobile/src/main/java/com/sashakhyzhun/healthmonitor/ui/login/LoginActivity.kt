@@ -27,7 +27,6 @@ import com.sashakhyzhun.healthmonitor.ui.MainActivity
 import timber.log.Timber
 import com.facebook.login.LoginResult
 import org.json.JSONException
-import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -49,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.login_activity)
         Timber.d("called")
 
         val googleSignInButton = findViewById<SignInButton>(R.id.sign_in_button)

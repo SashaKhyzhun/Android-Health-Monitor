@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Profile"
-        android:id="@+id/action_profile"
+    <item android:title="Challenges"
+        android:id="@+id/action_challenges"
         android:icon="@drawable/common_full_open_on_phone"
         />
 
-    <item android:title="Challenges"
-        android:id="@+id/action_challenges"
+    <item android:title="Profile"
+        android:id="@+id/action_profile"
         android:icon="@drawable/common_full_open_on_phone"
         />
 
