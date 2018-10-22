@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Health-Monitor</string>
+    <string name="app_name">Health Monitor</string>
     <string name="facebook_app_id">2211678025569806</string>
     <string name="fb_login_protocol_scheme">fb2211678025569806</string>
 
@@ -7,5 +7,6 @@
     <string name="connectivity_status_no_paired_devices">
         No paired bluetooth devices found.\nEnable bluetooth for synchronization
     </string>
+    <string name="label_add_friend"><u>add friend</u></string>
 
 </resources>

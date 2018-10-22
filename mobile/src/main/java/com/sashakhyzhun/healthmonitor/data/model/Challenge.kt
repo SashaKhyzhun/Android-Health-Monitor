@@ -4,7 +4,9 @@ data class Challenge(
         var title: String,
         var duration: Int,
         var type: ChallengeType,
-        var enemy: String?
+        var enemy: String? = null,
+        var lastCheckIn: Long = 0L,
+        var doneForToday: Boolean = false
 )
 
 /*

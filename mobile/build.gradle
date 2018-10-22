@@ -65,8 +65,10 @@ dependencies {
     api 'com.facebook.android:facebook-login:[4,5)'
 
     // Swipe Action
-    implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
+    api 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
 
+    // Charts
+    api 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
 
     // Test

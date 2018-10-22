@@ -1,5 +1,7 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -15,8 +17,13 @@ import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivi
 import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import timber.log.Timber
 
 class ChallengesFragment : Fragment() {
+
+    companion object {
+        const val REQUEST_NEW_CHALLENGE = 7425
+    }
 
     private var challenges: MutableList<Challenge> = mutableListOf()
 
@@ -38,7 +45,9 @@ class ChallengesFragment : Fragment() {
         val view = inflater.inflate(R.layout.challenges_fragment, container, false)
 
         fab = view.findViewById(R.id.fab)
-        fab.setOnClickListener { startActivity<CreateChallengeActivity>() }
+        fab.setOnClickListener { startActivityForResult(
+                Intent(context, CreateChallengeActivity::class.java), REQUEST_NEW_CHALLENGE)
+        }
 
         rvChallenges = view.findViewById(R.id.rv_challenges)
         rvChallenges.adapter = adapter
@@ -48,7 +57,7 @@ class ChallengesFragment : Fragment() {
         onTouchIncomingListener
                 //.setIndependentViews(R.id.rowButton)
                 .setSwipeOptionViews(R.id.layout_check_in, R.id.layout_give_up)
-                .setSwipeable(R.id.rowFG, R.id.rowBG) { viewID, position ->
+                .setSwipeable(R.id.rowFG, R.id.rowBG) { viewID, _ ->
                     when (viewID) {
                         R.id.layout_check_in -> {
                             toast("1")
@@ -61,6 +70,21 @@ class ChallengesFragment : Fragment() {
 
 
         return view
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_NEW_CHALLENGE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    Timber.d("RESULT_OK")
+                }
+                Activity.RESULT_CANCELED -> {
+                    Timber.d("RESULT_CANCELED")
+                }
+            }
+        }
     }
 
 

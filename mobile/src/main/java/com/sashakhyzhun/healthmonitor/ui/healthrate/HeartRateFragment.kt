@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.health_rate
+package com.sashakhyzhun.healthmonitor.ui.healthrate
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

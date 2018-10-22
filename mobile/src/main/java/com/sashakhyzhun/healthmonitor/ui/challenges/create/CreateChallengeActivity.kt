@@ -1,5 +1,7 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges.create
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sashakhyzhun.healthmonitor.R
@@ -8,62 +10,59 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.MotionEvent
 import android.view.GestureDetector
+import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import org.jetbrains.anko.toast
+import timber.log.Timber
 
 
-class CreateChallengeActivity : AppCompatActivity() {
+class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Callback {
 
-    var number: MutableList<String> = mutableListOf()
+    companion object {
+        const val REQUEST_SELECT_FRIEND = 8812
+    }
 
     private lateinit var rv: RecyclerView
-    private var adapter: CreateChallengeAdapter? = null
+    private lateinit var adapter: CreateChallengeAdapter
 
-    var childView: View? = null
-    var rvItemPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.challenges_create_new_activity)
 
-        addItemsToRecyclerViewArrayList()
-        adapter = CreateChallengeAdapter(number)
+        adapter = CreateChallengeAdapter(this)
 
 
         rv = findViewById(R.id.rv_create_challenge)
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv.adapter = adapter
 
-        rv.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
-            var gestureDetector = GestureDetector(applicationContext, object : GestureDetector.SimpleOnGestureListener() {
-                override fun onSingleTapUp(motionEvent: MotionEvent): Boolean = true
-            })
-            override fun onInterceptTouchEvent(Recyclerview: RecyclerView, motionEvent: MotionEvent): Boolean {
-                childView = Recyclerview.findChildViewUnder(motionEvent.x, motionEvent.y)
-                if (childView != null && gestureDetector.onTouchEvent(motionEvent)) {
-                    rvItemPosition = Recyclerview.getChildAdapterPosition(childView!!)
-                    toast(number[rvItemPosition])
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SELECT_FRIEND) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    Timber.d("RESULT_OK ")
                 }
-                return false
+                Activity.RESULT_CANCELED -> {
+                    Timber.d("RESULT_CANCELED")
+                }
             }
-
-            override fun onTouchEvent(Recyclerview: RecyclerView, motionEvent: MotionEvent) {}
-            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
-        })
-
+        }
     }
 
-    private fun addItemsToRecyclerViewArrayList() {
-        number.add("ONE")
-        number.add("TWO")
-        number.add("THREE")
-        number.add("FOUR")
-        number.add("FIVE")
-        number.add("SIX")
-        number.add("SEVEN")
-        number.add("EIGHT")
-        number.add("NINE")
-        number.add("TEN")
-
+    override fun addFriendClicked(challenge: Challenge) {
+        // 1. start activity for result.
+        // 2. receive result in onActivityResult
+        // 3. change type to 'duel'
+        // 4. save to db as active challenge.
     }
+
+    override fun createClicked(challenge: Challenge) {
+        // 1. save to db as active challenge.
+    }
+
+
 
 }
