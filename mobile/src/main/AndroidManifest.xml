@@ -5,11 +5,28 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="com.google.activity.sample" />
+    <uses-permission android:name="com.google.calories.expended" />
+    <uses-permission android:name="com.google.step_count.cadence" />
+    <uses-permission android:name="com.google.heart_rate.bpm" />
+    <uses-permission android:name="com.google.heart_rate.summary" />
+    <uses-permission android:name="com.google.height" />
+    <uses-permission android:name="com.google.weight" />
+    <uses-permission android:name="com.google.weight.summary" />
+    <uses-permission android:name="com.google.nutrition.item" />
+
+    <!--
+        Permissions for:
+        View your activity information in Google Fit
+        View your stored location data in Google Fit
+        View body sensor information in Google Fit
+        View nutrition information in Google Fit
+    -->
+
 
 
     <application
         android:name=".HealthMonitor"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -28,7 +45,7 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name="com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity" />
         <activity android:name=".ui.challenges.create.CreateChallengeActivity" />
 
 

@@ -18,6 +18,28 @@ import com.github.mikephil.charting.data.*
 
 class AnalyticsFragment : Fragment() {
 
+    /**
+     * Analyze:
+     *
+     * Weight
+     * Heart rate (bpm)
+     * Stress level
+     *
+     */
+
+    /**
+     * Store:
+     *
+     * Calories
+     * Steps
+     * Energy
+     * Productivity
+     * Sleep
+     * Weight
+     *
+     *
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

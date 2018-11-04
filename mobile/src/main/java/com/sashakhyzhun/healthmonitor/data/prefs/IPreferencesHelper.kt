@@ -8,8 +8,8 @@ interface IPreferencesHelper {
     fun createUserSession(name: String, email: String, phone: String, photo: Uri)
 
 
-    fun setIsRegisteredUser(value: Boolean)
-    fun isRegisteredUser(): Boolean
+    fun setIsNewUser(value: Boolean)
+    fun isNewUser(): Boolean
 
 
     fun setProfileImage(photo: Uri)

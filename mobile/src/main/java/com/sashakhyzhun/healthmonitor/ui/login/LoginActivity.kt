@@ -27,6 +27,7 @@ import com.sashakhyzhun.healthmonitor.ui.MainActivity
 import timber.log.Timber
 import com.facebook.login.LoginResult
 import org.json.JSONException
+import javax.inject.Inject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -43,8 +44,10 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var facebookSignInButton: LoginButton
     private lateinit var callbackManager: CallbackManager
-    private lateinit var prefs: IPreferencesHelper
-    private lateinit var dm: AppDataManager
+
+    @Inject
+    lateinit var dm: AppDataManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +61,6 @@ class LoginActivity : AppCompatActivity() {
 
         progressDialog = ProgressDialog(this)
 
-        prefs = PreferencesHelper(this)
-        dm = AppDataManager(this, prefs)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -75,18 +76,6 @@ class LoginActivity : AppCompatActivity() {
         facebookSignInButton.setOnClickListener { signInFacebook() }
     }
 
-
-    private fun displayProgressDiaTimber() {
-        progressDialog!!.setMessage("Logging In... Please wait...")
-        progressDialog!!.isIndeterminate = false
-        progressDialog!!.setCancelable(false)
-        progressDialog!!.show()
-
-    }
-
-    private fun hideProgressDialog() {
-        progressDialog!!.dismiss()
-    }
 
     private fun signInGoogle() {
         val signInIntent = mGoogleSignInClient!!.signInIntent
@@ -115,6 +104,8 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -136,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        displayProgressDiaTimber()
+        displayProgressDialog()
         Timber.d("firebaseAuthWithGoogle:%s", acct.id!!)
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
@@ -158,6 +149,8 @@ class LoginActivity : AppCompatActivity() {
                     hideProgressDialog()
                 }
     }
+
+
 
     private fun handleGoogleUser(user: FirebaseUser?) {
         hideProgressDialog()
@@ -193,13 +186,28 @@ class LoginActivity : AppCompatActivity() {
         request.executeAsync()
     }
 
+
+
     private fun createNewUser(name: String, email: String, phone: String, photo: Uri) {
-        dm.setIsRegisteredUser(true)
-        Timber.d("isRegisteredUser=${dm.isRegisteredUser()}")
+        dm.setIsNewUser(false)
+        Timber.d("isNewUser=${dm.isNewUser()}")
         dm.createUserSession(name = name, email = email, phone = phone, photo = photo)
         startActivity(Intent(this, MainActivity::class.java))
     }
 
+
+
+    private fun displayProgressDialog() {
+        progressDialog!!.setMessage("Logging In... Please wait...")
+        progressDialog!!.isIndeterminate = false
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.show()
+
+    }
+
+    private fun hideProgressDialog() {
+        progressDialog!!.dismiss()
+    }
 
 
 

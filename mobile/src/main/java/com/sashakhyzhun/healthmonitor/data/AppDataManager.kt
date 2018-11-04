@@ -2,22 +2,31 @@ package com.sashakhyzhun.healthmonitor.data
 
 import android.content.Context
 import android.net.Uri
+import com.sashakhyzhun.healthmonitor.data.db.IDatabaseHelper
 import com.sashakhyzhun.healthmonitor.data.prefs.IPreferencesHelper
+import com.sashakhyzhun.healthmonitor.di.ApplicationContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author SashaKhyzhun
  * Created on 8/28/18.
  */
-class AppDataManager constructor(
-            private val context: Context,
-            //private val dbHelper: IDatabaseHelper,
-            private val prefsHelper: IPreferencesHelper
-    ) : IDataManagerHelper {
+@Singleton
+class AppDataManager
+@Inject constructor(
+        @ApplicationContext private val context: Context,
+        private val dbHelper: IDatabaseHelper,
+        private val prefsHelper: IPreferencesHelper
+) : IDataManagerHelper {
 
-    override fun isRegisteredUser(): Boolean = prefsHelper.isRegisteredUser()
+    override fun isNewUser(): Boolean = prefsHelper.isNewUser()
 
     override fun getPrefVersion(): Int = prefsHelper.getPrefVersion()
 
+
+    override fun doSomething() {
+    }
 
     /**
      * Preference actions
@@ -30,8 +39,8 @@ class AppDataManager constructor(
         prefsHelper.setPreferName(i)
     }
 
-    override fun setIsRegisteredUser(value: Boolean) {
-        prefsHelper.setIsRegisteredUser(value)
+    override fun setIsNewUser(value: Boolean) {
+        prefsHelper.setIsNewUser(value)
     }
 
     override fun setProfileImage(photo: Uri) {
@@ -97,7 +106,6 @@ class AppDataManager constructor(
     override fun getGender(): String {
         return prefsHelper.getGender()
     }
-
 
 
 }

@@ -12,34 +12,68 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity
+import com.sashakhyzhun.healthmonitor.data.AppDataManager
+import com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity
+import kotlinx.android.synthetic.main.profile_fragment.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
 
 class ProfileFragment : Fragment() {
 
-    private var mAuth: FirebaseAuth? = null
-    private var mGoogleSignInClient: GoogleSignInClient? = null
+    /**
+     * Items:
+     *
+     * Name
+     * Email
+     * Photo
+     * Gender
+     * Date of birth
+     * Height
+     * Weight
+     *
+     * Blood
+     * Allergy
+     * Lifestyle
+     *
+     * Personal Goals:
+     *
+     */
+
+
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var dataManager: AppDataManager
 
     // UI
-    private lateinit var ivSettings: ImageView
+    //private lateinit var ivSettings: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+
+        mAuth = FirebaseAuth.getInstance()
+        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
+
+
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
 
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
-        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
-        mAuth = FirebaseAuth.getInstance()
 
 
 
-        ivSettings = view.findViewById(R.id.ivSettings)
+
+
+
+
         ivSettings.onClick { startActivity<SettingsActivity>() }
 
 
