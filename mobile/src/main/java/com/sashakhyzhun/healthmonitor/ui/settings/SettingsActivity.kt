@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.profile.settings
+package com.sashakhyzhun.healthmonitor.ui.settings
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

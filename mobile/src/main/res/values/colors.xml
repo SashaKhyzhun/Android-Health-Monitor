@@ -14,5 +14,6 @@
     <color name="swipe_option_blue">#3693D0</color>
     <color name="swipe_option_purple">#ff1744</color>
     <color name="swipe_option_orange">#d9a710</color>
+    <color name="black_effective">#2a2a2a</color>
 
 </resources>

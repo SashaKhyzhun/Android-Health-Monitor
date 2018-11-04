@@ -12,11 +12,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.AppDataManager
-import com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity
-import kotlinx.android.synthetic.main.profile_fragment.*
+import com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
 
@@ -40,40 +39,25 @@ class ProfileFragment : Fragment() {
      */
 
 
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var dataManager: AppDataManager
 
     // UI
-    //private lateinit var ivSettings: ImageView
+    private lateinit var ivSettings: ImageView
+
+    @Inject
+    lateinit var gso: GoogleSignInOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
-
-        mAuth = FirebaseAuth.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance()
         mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
-
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
 
-
-
-
-
-
-
-
+        ivSettings = view.findViewById(R.id.ivSettings)
         ivSettings.onClick { startActivity<SettingsActivity>() }
 
 
@@ -83,12 +67,13 @@ class ProfileFragment : Fragment() {
 
 
     private fun signOutGoogle() {
-        mAuth!!.signOut() // Firebase sign out
-        mGoogleSignInClient!!.signOut() // Google sign out
+        firebaseAuth.signOut()
+        mGoogleSignInClient.signOut()
     }
 
     private fun signOutFacebook() {
         LoginManager.getInstance().logOut()
     }
+
 
 }

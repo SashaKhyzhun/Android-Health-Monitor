@@ -8,7 +8,7 @@ import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
  * can be accessed from the children classes by calling getMvpView().
  */
 abstract class BasePresenter<V : MvpView>(
-        private val mDataManager: IDataManagerHelper
+        val mDataManager: IDataManagerHelper
 ) : MvpPresenter<V> {
 
     var mMvpView: V? = null
@@ -22,9 +22,9 @@ abstract class BasePresenter<V : MvpView>(
 
     fun isViewAttached() = mMvpView != null
 
-    fun getMvpView(): V? = mMvpView
+    //fun getMvpView(): V? = mMvpView
 
-    fun getDataManager(): IDataManagerHelper = mDataManager
+    //fun getDataManager(): IDataManagerHelper = mDataManager
 
     class MvpViewNotAttachedException : RuntimeException(
             "Please call Presenter.onAttach(MvpView) before"
