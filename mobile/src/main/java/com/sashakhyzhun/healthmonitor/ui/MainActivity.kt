@@ -6,6 +6,7 @@ import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.sashakhyzhun.healthmonitor.*
 import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.analytics.*
@@ -17,6 +18,8 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private var doubleBackToExitPressedOnce = false
+
+    lateinit var gso: GoogleSignInOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

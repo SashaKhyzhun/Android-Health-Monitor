@@ -12,12 +12,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
+import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment(), ProfileView {
 
     /**
      * Items:
@@ -41,28 +42,34 @@ class ProfileFragment : Fragment() {
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-
-    // UI
     private lateinit var ivSettings: ImageView
 
     @Inject
-    lateinit var gso: GoogleSignInOptions
+    lateinit var presenter: ProfilePresenter<ProfileView>
+
+    private lateinit var gso: GoogleSignInOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
-        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
+
+        val component = getActivityComponent()
+        component?.let {
+            it.inject(this)
+            presenter.onAttach(this)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
 
-        ivSettings = view.findViewById(R.id.ivSettings)
-        ivSettings.onClick { startActivity<SettingsActivity>() }
-
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(activity?.getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+        firebaseAuth = FirebaseAuth.getInstance()
+        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
 
         return view
-
     }
 
 
@@ -75,5 +82,9 @@ class ProfileFragment : Fragment() {
         LoginManager.getInstance().logOut()
     }
 
+    override fun setUpView(view: View) {
+        ivSettings = view.findViewById(R.id.ivSettings)
+        ivSettings.onClick { startActivity<SettingsActivity>() }
 
+    }
 }
