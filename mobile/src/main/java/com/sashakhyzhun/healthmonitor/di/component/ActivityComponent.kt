@@ -1,8 +1,10 @@
 package com.sashakhyzhun.healthmonitor.di.component
 
-import android.support.v4.app.Fragment
 import com.sashakhyzhun.healthmonitor.di.PerActivity
 import com.sashakhyzhun.healthmonitor.di.module.ActivityModule
+import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsFragment
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
+import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.login.LoginActivity
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
@@ -17,10 +19,13 @@ interface ActivityComponent {
     fun inject(activity: SplashActivity)
     fun inject(activity: LoginActivity)
     fun inject(activity: SettingsActivity)
+    fun inject(activity: CreateChallengeActivity)
 
 
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: HeartRateFragment)
+    fun inject(fragment: ChallengesFragment)
+    fun inject(fragment: AnalyticsFragment)
 
 
 }

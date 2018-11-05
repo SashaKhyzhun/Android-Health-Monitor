@@ -13,13 +13,14 @@ import android.view.ViewGroup
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
+import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
+import javax.inject.Inject
 
-class ChallengesFragment : Fragment() {
+class ChallengesFragment : BaseFragment(), ChallengesView {
 
     companion object {
         const val REQUEST_NEW_CHALLENGE = 7425
@@ -34,16 +35,32 @@ class ChallengesFragment : Fragment() {
     private lateinit var adapter: ChallengesAdapter
     private lateinit var onTouchIncomingListener: RecyclerTouchListener
 
+    @Inject
+    lateinit var presenter: ChallengesPresenter<ChallengesView>
+    @Inject
+    lateinit var linearLayout: LinearLayoutManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val component = getActivityComponent()
+        component?.let {
+            it.inject(this)
+            presenter.onAttach(this)
+        }
+
         challenges.fillWithMockChallenges()
         adapter = ChallengesAdapter(context!!, challenges)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.challenges_fragment, container, false)
+        return view
+    }
 
+
+    override fun setUpView(view: View) {
         fab = view.findViewById(R.id.fab)
         fab.setOnClickListener { startActivityForResult(
                 Intent(context, CreateChallengeActivity::class.java), REQUEST_NEW_CHALLENGE)
@@ -67,9 +84,6 @@ class ChallengesFragment : Fragment() {
                         }
                     }
                 }
-
-
-        return view
     }
 
 
@@ -87,7 +101,6 @@ class ChallengesFragment : Fragment() {
         }
     }
 
-
     override fun onResume() {
         super.onResume()
         rvChallenges.addOnItemTouchListener(onTouchIncomingListener)
@@ -97,7 +110,6 @@ class ChallengesFragment : Fragment() {
         super.onPause()
         rvChallenges.removeOnItemTouchListener(onTouchIncomingListener)
     }
-
 }
 
 

@@ -46,7 +46,7 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
         <activity android:name="com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity" />
-        <activity android:name=".ui.challenges.create.CreateChallengeActivity" />
+        <activity android:name="com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity" />
 
 
 

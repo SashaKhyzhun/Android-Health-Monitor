@@ -13,7 +13,6 @@ import com.sashakhyzhun.healthmonitor.ui.analytics.*
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
 import org.jetbrains.anko.toast
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 

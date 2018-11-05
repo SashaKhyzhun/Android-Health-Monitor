@@ -9,6 +9,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.di.ActivityContext
 import com.sashakhyzhun.healthmonitor.di.PerActivity
+import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenter
+import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenterImpl
+import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsView
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesPresenter
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesPresenterImpl
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesView
+import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenter
+import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenterImpl
+import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateView
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRatePresenter
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRatePresenterImpl
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateView
@@ -78,14 +87,29 @@ class ActivityModule constructor(val activity: AppCompatActivity) {
         return presenter
     }
 
-
     @Provides
     @PerActivity
     fun provideHeartRatePresenter(presenter: HeartRatePresenterImpl<HeartRateView>): HeartRatePresenter<HeartRateView> {
         return presenter
     }
 
+    @Provides
+    @PerActivity
+    fun provideChallengesPresenter(presenter: ChallengesPresenterImpl<ChallengesView>): ChallengesPresenter<ChallengesView> {
+        return presenter
+    }
 
+    @Provides
+    @PerActivity
+    fun provideCreatePresenter(presenter: CreatePresenterImpl<CreateView>): CreatePresenter<CreateView> {
+        return presenter
+    }
+
+    @Provides
+    @PerActivity
+    fun provideAnalyticsresenter(presenter: AnalyticsPresenterImpl<AnalyticsView>): AnalyticsPresenter<AnalyticsView> {
+        return presenter
+    }
 
 
 }

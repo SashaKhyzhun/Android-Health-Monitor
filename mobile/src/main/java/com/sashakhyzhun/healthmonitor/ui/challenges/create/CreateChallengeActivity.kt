@@ -7,15 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import com.sashakhyzhun.healthmonitor.R
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.view.MotionEvent
-import android.view.GestureDetector
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import org.jetbrains.anko.toast
+import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
 import timber.log.Timber
+import javax.inject.Inject
 
 
-class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Callback {
+class CreateChallengeActivity : BaseActivity(), CreateView, CreateChallengeAdapter.Callback {
 
     companion object {
         const val REQUEST_SELECT_FRIEND = 8812
@@ -24,18 +22,29 @@ class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Call
     private lateinit var rv: RecyclerView
     private lateinit var adapter: CreateChallengeAdapter
 
+    @Inject
+    lateinit var presenter: CreatePresenter<CreateView>
+
+    @Inject
+    lateinit var linearLayout: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.challenges_create_new_activity)
 
+        val component = getActivityComponent()
+        component.let {
+            it.inject(this)
+            presenter.onAttach(this)
+        }
+
         adapter = CreateChallengeAdapter(this)
 
+        linearLayout.orientation = LinearLayoutManager.HORIZONTAL
 
         rv = findViewById(R.id.rv_create_challenge)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.layoutManager = linearLayout
         rv.adapter = adapter
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
