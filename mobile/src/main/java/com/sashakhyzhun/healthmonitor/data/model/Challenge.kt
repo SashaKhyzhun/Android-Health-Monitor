@@ -1,7 +1,13 @@
 package com.sashakhyzhun.healthmonitor.data.model
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import android.support.annotation.NonNull
+
+@Entity(tableName = "challenge_table")
 data class Challenge(
-        var title: String,
+        @PrimaryKey @NonNull @ColumnInfo(name = "title") var title: String,
         var duration: Int,
         var type: ChallengeType,
         var enemy: String? = null,

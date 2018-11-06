@@ -5,16 +5,14 @@ import android.os.Bundle
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
+import com.sashakhyzhun.healthmonitor.data.AppDataManagerHelper
 import com.sashakhyzhun.healthmonitor.ui.base.BasePresenter
 import org.json.JSONException
 import timber.log.Timber
 import javax.inject.Inject
 
 class LoginPresenterImpl<V : LoginView> @Inject constructor(
-        mDataManager: IDataManagerHelper
+        mDataManager: AppDataManagerHelper
 ) : BasePresenter<V>(mDataManager), LoginPresenter<V> {
 
     override fun signInGoogle() {

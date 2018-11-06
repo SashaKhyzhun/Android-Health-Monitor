@@ -2,7 +2,6 @@ package com.sashakhyzhun.healthmonitor.data
 
 import android.content.Context
 import android.net.Uri
-import com.sashakhyzhun.healthmonitor.data.db.IDatabaseHelper
 import com.sashakhyzhun.healthmonitor.data.prefs.IPreferencesHelper
 import com.sashakhyzhun.healthmonitor.di.ApplicationContext
 import javax.inject.Inject
@@ -16,17 +15,13 @@ import javax.inject.Singleton
 class AppDataManager
 @Inject constructor(
         @ApplicationContext private val context: Context,
-        private val dbHelper: IDatabaseHelper,
         private val prefsHelper: IPreferencesHelper
-) : IDataManagerHelper {
+) : AppDataManagerHelper {
 
     override fun isNewUser(): Boolean = prefsHelper.isNewUser()
 
     override fun getPrefVersion(): Int = prefsHelper.getPrefVersion()
 
-
-    override fun doSomething() {
-    }
 
     /**
      * Preference actions

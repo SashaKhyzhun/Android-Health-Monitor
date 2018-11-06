@@ -21,7 +21,7 @@ class CreateChallengeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
         return MyView(LayoutInflater.from(parent.context)
-                .inflate(R.layout.challenges_create_new_item, parent, false))
+                .inflate(R.layout.item_create_challenge, parent, false))
     }
 
     override fun onBindViewHolder(holder: MyView, position: Int) {

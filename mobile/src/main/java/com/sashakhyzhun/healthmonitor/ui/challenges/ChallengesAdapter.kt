@@ -19,7 +19,7 @@ class ChallengesAdapter(
     override fun onCreateViewHolder(group: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater
                 .from(ctx)
-                .inflate(R.layout.challenges_item_card, group, false))
+                .inflate(R.layout.item_challenge_card, group, false))
     }
 
     override fun getItemCount(): Int = challenges.size

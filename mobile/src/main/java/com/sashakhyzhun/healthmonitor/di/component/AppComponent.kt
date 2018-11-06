@@ -3,7 +3,7 @@ package com.sashakhyzhun.healthmonitor.di.component
 import android.app.Application
 import android.content.Context
 import com.sashakhyzhun.healthmonitor.HealthMonitor
-import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
+import com.sashakhyzhun.healthmonitor.data.AppDataManagerHelper
 import com.sashakhyzhun.healthmonitor.di.ApplicationContext
 import com.sashakhyzhun.healthmonitor.di.module.AppModule
 import dagger.Component
@@ -21,7 +21,7 @@ interface AppComponent {
 
     fun application(): Application
 
-    fun dataManager(): IDataManagerHelper
+    fun dataManager(): AppDataManagerHelper
 
 
 }

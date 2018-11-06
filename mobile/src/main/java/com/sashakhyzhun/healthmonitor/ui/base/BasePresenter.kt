@@ -1,6 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui.base
 
-import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
+import com.sashakhyzhun.healthmonitor.data.AppDataManagerHelper
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
@@ -8,7 +8,7 @@ import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
  * can be accessed from the children classes by calling getMvpView().
  */
 abstract class BasePresenter<V : MvpView>(
-        val mDataManager: IDataManagerHelper
+        val mDataManager: AppDataManagerHelper
 ) : MvpPresenter<V> {
 
     var mMvpView: V? = null

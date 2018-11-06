@@ -1,7 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui.profile
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,7 +59,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.profile_fragment, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(activity?.getString(R.string.default_web_client_id))

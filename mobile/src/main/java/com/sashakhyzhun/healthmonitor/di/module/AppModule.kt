@@ -3,9 +3,7 @@ package com.sashakhyzhun.healthmonitor.di.module
 import android.app.Application
 import android.content.Context
 import com.sashakhyzhun.healthmonitor.data.AppDataManager
-import com.sashakhyzhun.healthmonitor.data.db.DatabaseHelper
-import com.sashakhyzhun.healthmonitor.data.IDataManagerHelper
-import com.sashakhyzhun.healthmonitor.data.db.IDatabaseHelper
+import com.sashakhyzhun.healthmonitor.data.AppDataManagerHelper
 import com.sashakhyzhun.healthmonitor.data.prefs.IPreferencesHelper
 import com.sashakhyzhun.healthmonitor.data.prefs.PreferencesHelper
 import com.sashakhyzhun.healthmonitor.di.ApplicationContext
@@ -28,15 +26,15 @@ class AppModule(private val mApplication: Application) {
 
     @Provides
     @Singleton
-    fun provideIDataManagerHelper(appDataManager: AppDataManager): IDataManagerHelper {
+    fun provideIDataManagerHelper(appDataManager: AppDataManager): AppDataManagerHelper {
         return appDataManager
     }
 
-    @Provides
-    @Singleton
-    fun provideIDatabaseHelper(databaseManager: DatabaseHelper): IDatabaseHelper {
-        return databaseManager
-    }
+//    @Provides
+//    @Singleton
+//    fun provideIDatabaseHelper(databaseManager: DatabaseHelper): ChallengeDao {
+//        return databaseManager
+//    }
 
     @Provides
     @Singleton
