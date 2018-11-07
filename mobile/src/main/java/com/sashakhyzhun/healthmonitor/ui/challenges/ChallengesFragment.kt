@@ -1,6 +1,8 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges
 
 import android.app.Activity
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -19,7 +21,7 @@ import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 import javax.inject.Inject
 
-class ChallengesFragment : BaseFragment(), ChallengesView {
+class ChallengesFragment : BaseFragment() {
 
     companion object {
         const val REQUEST_NEW_CHALLENGE = 7425
@@ -34,23 +36,27 @@ class ChallengesFragment : BaseFragment(), ChallengesView {
     private lateinit var adapter: ChallengesAdapter
     private lateinit var onTouchIncomingListener: RecyclerTouchListener
 
-    @Inject
-    lateinit var presenter: ChallengesPresenter<ChallengesView>
-    @Inject
-    lateinit var linearLayout: LinearLayoutManager
+    //@Inject lateinit var presenter: ChallengesPresenter<ChallengesView>
+    @Inject lateinit var linearLayout: LinearLayoutManager
+    private lateinit var mChallengesVM: ChallengesViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val component = getActivityComponent()
-        component?.let {
-            it.inject(this)
-            presenter.onAttach(this)
-        }
+//        val component = getActivityComponent()
+//        component?.let {
+//            it.inject(this)
+//            presenter.onAttach(this)
+//        }
 
-        challenges.fillWithMockChallenges()
-        adapter = ChallengesAdapter(context!!, challenges)
+        mChallengesVM = ViewModelProviders.of(this.activity!!).get(ChallengesViewModel::class.java)
+
+        //challenges.fillWithMockChallenges()
+        adapter = ChallengesAdapter(context!!)
+//        mChallengesVM.getAllWords().observe(this, Observer { items ->
+//            adapter.setChallenges(items)
+//        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -77,6 +83,7 @@ class ChallengesFragment : BaseFragment(), ChallengesView {
                     when (viewID) {
                         R.id.layout_check_in -> {
                             toast("1")
+
                         }
                         R.id.layout_give_up -> {
                             toast("2")
@@ -109,6 +116,7 @@ class ChallengesFragment : BaseFragment(), ChallengesView {
         super.onPause()
         rvChallenges.removeOnItemTouchListener(onTouchIncomingListener)
     }
+
 }
 
 

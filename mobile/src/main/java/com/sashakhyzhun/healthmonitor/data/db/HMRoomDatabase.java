@@ -12,10 +12,11 @@ public abstract class HMRoomDatabase extends RoomDatabase {
     /**
      * @return Dao
      */
-    public abstract ChallengeDao wordDao();
+    public abstract ChallengeDao challengeDao();
 
 
     private static volatile HMRoomDatabase INSTANCE;
+
 
     public static HMRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

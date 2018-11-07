@@ -1,8 +1,6 @@
 package com.sashakhyzhun.healthmonitor.di.module
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.content.res.TypedArrayUtils.getString
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -12,9 +10,6 @@ import com.sashakhyzhun.healthmonitor.di.PerActivity
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenter
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenterImpl
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsView
-import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesPresenter
-import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesPresenterImpl
-import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesView
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenter
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenterImpl
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateView
@@ -93,11 +88,11 @@ class ActivityModule constructor(val activity: AppCompatActivity) {
         return presenter
     }
 
-    @Provides
-    @PerActivity
-    fun provideChallengesPresenter(presenter: ChallengesPresenterImpl<ChallengesView>): ChallengesPresenter<ChallengesView> {
-        return presenter
-    }
+//    @Provides
+//    @PerActivity
+//    fun provideChallengesPresenter(presenter: ChallengesPresenterImpl<ChallengesView>): ChallengesPresenter<ChallengesView> {
+//        return presenter
+//    }
 
     @Provides
     @PerActivity
@@ -107,7 +102,7 @@ class ActivityModule constructor(val activity: AppCompatActivity) {
 
     @Provides
     @PerActivity
-    fun provideAnalyticsresenter(presenter: AnalyticsPresenterImpl<AnalyticsView>): AnalyticsPresenter<AnalyticsView> {
+    fun provideAnalyticsPresenter(presenter: AnalyticsPresenterImpl<AnalyticsView>): AnalyticsPresenter<AnalyticsView> {
         return presenter
     }
 

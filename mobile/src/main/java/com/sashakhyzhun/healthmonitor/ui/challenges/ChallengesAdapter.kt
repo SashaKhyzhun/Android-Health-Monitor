@@ -12,9 +12,10 @@ import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
 
 class ChallengesAdapter(
-        private val ctx: Context,
-        private val challenges: List<Challenge>
+        private val ctx: Context
 ) : RecyclerView.Adapter<ChallengesAdapter.ViewHolder>() {
+
+    private var challenges: List<Challenge>? = null
 
     override fun onCreateViewHolder(group: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater
@@ -22,18 +23,23 @@ class ChallengesAdapter(
                 .inflate(R.layout.item_challenge_card, group, false))
     }
 
-    override fun getItemCount(): Int = challenges.size
+    override fun getItemCount(): Int = challenges?.size ?: 0
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(vh: ViewHolder, position: Int) {
-        val item = challenges[position]
+        if (challenges != null) {
+            val item = challenges!![position]
 
-        //vh.challengeImage
-        vh.challengeTitle.text = item.title
-        vh.challengeDuration.text = item.duration.toString() + " / 21"
+            vh.challengeTitle.text = item.title
+            vh.challengeDuration.text = item.duration.toString() + " / 21"
 
-        item.enemy?.let { vh.challengeWith.text = "with $it" }
+            item.enemy?.let { vh.challengeWith.text = "with $it" }
+        }
+    }
 
+    fun setChallenges(items: List<Challenge>?) {
+        challenges = items
+        notifyDataSetChanged()
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {

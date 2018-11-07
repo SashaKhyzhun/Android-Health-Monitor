@@ -30,16 +30,13 @@ class AppModule(private val mApplication: Application) {
         return appDataManager
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideIDatabaseHelper(databaseManager: DatabaseHelper): ChallengeDao {
-//        return databaseManager
-//    }
 
     @Provides
     @Singleton
     fun providePreferencesManager(preferencesHelper: PreferencesHelper): IPreferencesHelper {
         return preferencesHelper
     }
+
+
 
 }

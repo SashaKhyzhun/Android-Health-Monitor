@@ -10,7 +10,6 @@ import android.widget.TextView
 
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 
 class CreateChallengeAdapter(
         private val callback: Callback
@@ -54,13 +53,13 @@ class CreateChallengeAdapter(
 
     private fun fillChallenges(): List<Challenge> {
         return listOf(
-                Challenge("Smoking free live", 21, ChallengeType.SELF, null, 0L, false),
-                Challenge("No TV", 21, ChallengeType.SELF, null, 0L, false),
-                Challenge("Taking stairs", 21, ChallengeType.SELF, null, 0L, false),
-                Challenge("Sugar free live", 21, ChallengeType.SELF, null, 0L, false),
-                Challenge("10K steps per day", 21, ChallengeType.FITNESS, null, 0L, false),
-                Challenge("Drink more water", 21, ChallengeType.SELF, null, 0L, false),
-                Challenge("Sleep before midnight", 21, ChallengeType.SELF, null, 0L, false)
+                Challenge("Smoking free live", 21, "type_qwerty", null, 0L, false),
+                Challenge("No TV", 21, "type_qwerty", null, 0L, false),
+                Challenge("Taking stairs", 21, "type_qwerty", null, 0L, false),
+                Challenge("Sugar free live", 21, "type_qwerty", null, 0L, false),
+                Challenge("10K steps per day", 21, "type_qwerty", null, 0L, false),
+                Challenge("Drink more water", 21, "type_qwerty", null, 0L, false),
+                Challenge("Sleep before midnight", 21, "type_qwerty", null, 0L, false)
         )
     }
 

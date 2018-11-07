@@ -9,7 +9,7 @@ import android.support.annotation.NonNull
 data class Challenge(
         @PrimaryKey @NonNull @ColumnInfo(name = "title") var title: String,
         var duration: Int,
-        var type: ChallengeType,
+        var type: String = "",
         var enemy: String? = null,
         var lastCheckIn: Long = 0L,
         var doneForToday: Boolean = false

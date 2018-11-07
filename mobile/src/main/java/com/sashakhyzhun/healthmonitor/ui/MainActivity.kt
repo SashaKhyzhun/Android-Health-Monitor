@@ -1,5 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui
 
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.sashakhyzhun.healthmonitor.*
 import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.analytics.*
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesViewModel
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
 import org.jetbrains.anko.toast
@@ -27,7 +29,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
         bottomNavigationView.selectedItemId = R.id.action_profile
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

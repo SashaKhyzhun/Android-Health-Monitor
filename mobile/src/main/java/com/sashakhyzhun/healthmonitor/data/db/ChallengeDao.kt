@@ -21,8 +21,8 @@ interface ChallengeDao {
     @Query("DELETE FROM challenge_table WHERE title = :title")
     fun deleteOne(title: String)
 
-    @Query("SELECT * FROM challenge_table WHERE title = :title")
-    fun getOne(title: String)
+    //@Query("SELECT * FROM challenge_table WHERE title = :title")
+    //fun getOne(title: String)
 
     @Query("DELETE FROM challenge_table")
     fun deleteAll()
