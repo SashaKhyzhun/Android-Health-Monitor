@@ -10,12 +10,13 @@ import android.widget.TextView
 
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
+import com.sashakhyzhun.healthmonitor.utils.loadDefaultChallenges
 
 class CreateChallengeAdapter(
         private val callback: Callback
 ) : RecyclerView.Adapter<CreateChallengeAdapter.MyView>() {
 
-    private val challenges: List<Challenge> = fillChallenges()
+    private val challenges: List<Challenge> = loadDefaultChallenges()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
@@ -51,17 +52,7 @@ class CreateChallengeAdapter(
         val ibCreate: ImageButton = view.findViewById(R.id.image_button_create)
     }
 
-    private fun fillChallenges(): List<Challenge> {
-        return listOf(
-                Challenge("Smoking free live", 21, "type_qwerty", null, 0L, false),
-                Challenge("No TV", 21, "type_qwerty", null, 0L, false),
-                Challenge("Taking stairs", 21, "type_qwerty", null, 0L, false),
-                Challenge("Sugar free live", 21, "type_qwerty", null, 0L, false),
-                Challenge("10K steps per day", 21, "type_qwerty", null, 0L, false),
-                Challenge("Drink more water", 21, "type_qwerty", null, 0L, false),
-                Challenge("Sleep before midnight", 21, "type_qwerty", null, 0L, false)
-        )
-    }
+
 
 
     interface Callback {

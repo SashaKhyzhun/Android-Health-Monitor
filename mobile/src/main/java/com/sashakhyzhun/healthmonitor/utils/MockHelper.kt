@@ -13,4 +13,14 @@ fun MutableList<Challenge>.fillWithMockChallenges() {
 }
 
 
-
+fun loadDefaultChallenges(): List<Challenge> {
+    return listOf(
+            Challenge("Smoking free live", 21, "type_qwerty", null, 0L, false),
+            Challenge("No TV", 21, "type_qwerty", null, 0L, false),
+            Challenge("Taking stairs", 21, "type_qwerty", null, 0L, false),
+            Challenge("Sugar free live", 21, "type_qwerty", null, 0L, false),
+            Challenge("10K steps per day", 21, "type_qwerty", null, 0L, false),
+            Challenge("Drink more water", 21, "type_qwerty", null, 0L, false),
+            Challenge("Sleep before midnight", 21, "type_qwerty", null, 0L, false)
+    )
+}

@@ -50,13 +50,13 @@ class ChallengesFragment : BaseFragment() {
 //            presenter.onAttach(this)
 //        }
 
-        mChallengesVM = ViewModelProviders.of(this.activity!!).get(ChallengesViewModel::class.java)
+        mChallengesVM = ViewModelProviders.of(this).get(ChallengesViewModel::class.java)
 
         //challenges.fillWithMockChallenges()
         adapter = ChallengesAdapter(context!!)
-//        mChallengesVM.getAllWords().observe(this, Observer { items ->
-//            adapter.setChallenges(items)
-//        })
+        mChallengesVM.getAllWords().observe(this, Observer { items ->
+            adapter.setChallenges(items)
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

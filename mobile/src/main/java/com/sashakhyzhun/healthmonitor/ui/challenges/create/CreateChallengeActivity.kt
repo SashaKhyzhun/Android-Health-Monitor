@@ -1,6 +1,7 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges.create
 
 import android.app.Activity
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import com.sashakhyzhun.healthmonitor.R
@@ -8,11 +9,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
+import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class CreateChallengeActivity : BaseActivity(), CreateView, CreateChallengeAdapter.Callback {
+class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback {
 
     companion object {
         const val REQUEST_SELECT_FRIEND = 8812
@@ -21,28 +23,27 @@ class CreateChallengeActivity : BaseActivity(), CreateView, CreateChallengeAdapt
     private lateinit var rv: RecyclerView
     private lateinit var adapter: CreateChallengeAdapter
 
-    @Inject
-    lateinit var presenter: CreatePresenter<CreateView>
+    //@Inject lateinit var presenter: CreatePresenter<CreateView>
+    //@Inject lateinit var linearLayout: LinearLayoutManager
 
-    @Inject
-    lateinit var linearLayout: LinearLayoutManager
+    private lateinit var mChallengesVM: CreateViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
 
-        val component = getActivityComponent()
-        component.let {
-            it.inject(this)
-            presenter.onAttach(this)
-        }
+        getActivityComponent().inject(this)
+
+
+
+        mChallengesVM = ViewModelProviders.of(this).get(CreateViewModel::class.java)
 
         adapter = CreateChallengeAdapter(this)
 
-        linearLayout.orientation = LinearLayoutManager.HORIZONTAL
+        //linearLayout.orientation = LinearLayoutManager.HORIZONTAL
 
         rv = findViewById(R.id.rv_create_challenge)
-        rv.layoutManager = linearLayout
+        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv.adapter = adapter
     }
 
@@ -69,6 +70,7 @@ class CreateChallengeActivity : BaseActivity(), CreateView, CreateChallengeAdapt
 
     override fun createClicked(challenge: Challenge) {
         // 1. save to db as active challenge.
+        mChallengesVM.create(challenge)
     }
 
 

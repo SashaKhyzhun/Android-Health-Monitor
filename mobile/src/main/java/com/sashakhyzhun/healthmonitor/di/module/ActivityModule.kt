@@ -10,9 +10,6 @@ import com.sashakhyzhun.healthmonitor.di.PerActivity
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenter
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsPresenterImpl
 import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsView
-import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenter
-import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreatePresenterImpl
-import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateView
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRatePresenter
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRatePresenterImpl
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateView
@@ -94,11 +91,11 @@ class ActivityModule constructor(val activity: AppCompatActivity) {
 //        return presenter
 //    }
 
-    @Provides
-    @PerActivity
-    fun provideCreatePresenter(presenter: CreatePresenterImpl<CreateView>): CreatePresenter<CreateView> {
-        return presenter
-    }
+//    @Provides
+//    @PerActivity
+//    fun provideCreatePresenter(presenter: CreatePresenterImpl<CreateView>): CreatePresenter<CreateView> {
+//        return presenter
+//    }
 
     @Provides
     @PerActivity
