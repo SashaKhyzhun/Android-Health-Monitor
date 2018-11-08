@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
+import com.sashakhyzhun.healthmonitor.ui.splash.SplashActivity;
 
 public class ListenerService extends WearableListenerService {
 
@@ -27,7 +28,7 @@ public class ListenerService extends WearableListenerService {
                 super.onMessageReceived(messageEvent);
             }
         } catch (Exception e) {
-            FirebaseCrash.report(e);
+            //FirebaseCrash.report(e);
         }
     }
 

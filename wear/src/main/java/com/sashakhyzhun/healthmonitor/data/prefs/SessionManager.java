@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.data;
+package com.sashakhyzhun.healthmonitor.data.prefs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
