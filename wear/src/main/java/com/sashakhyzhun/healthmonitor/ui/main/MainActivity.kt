@@ -1,7 +1,8 @@
-package com.sashakhyzhun.healthmonitor
+package com.sashakhyzhun.healthmonitor.ui.main
 
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
+import com.sashakhyzhun.healthmonitor.R
 
 class MainActivity : WearableActivity() {
 
