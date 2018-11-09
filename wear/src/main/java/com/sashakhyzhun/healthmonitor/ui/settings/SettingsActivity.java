@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.sashakhyzhun.healthmonitor.R;
 import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager;
-import com.sashakhyzhun.healthmonitor.ui.feedback.ContactUsActivity;
 import com.sashakhyzhun.healthmonitor.ui.settings.about.AboutActivity;
+import com.sashakhyzhun.healthmonitor.ui.settings.contact.ContactUsActivity;
 
 import org.jraf.android.androidwearcolorpicker.app.ColorPickActivity;
 
