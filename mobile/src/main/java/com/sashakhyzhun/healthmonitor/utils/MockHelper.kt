@@ -4,6 +4,10 @@ import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 
+/**
+ * DEFAULT
+ */
+
 
 fun fillSelfChallenges(): List<Challenge> {
     return listOf(

@@ -38,17 +38,29 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_self_improvement"
             />
 
-        <TextView
-            android:id="@+id/tv_duel_improvement"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Duel Challenge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_self_challenges" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_duel_improvement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Duel Challenge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_self_challenges" />
+            <TextView
+                android:id="@+id/tv_duel_name"
+                android:text="with UserName"
+                android:visibility="invisible"
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_duel_challenges"

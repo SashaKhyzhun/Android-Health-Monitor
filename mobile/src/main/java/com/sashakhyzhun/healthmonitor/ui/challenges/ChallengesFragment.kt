@@ -157,6 +157,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
 
         challenges.clear()
         val all = repo.getAllInProgress()
+        println("all=$all")
         challenges.addAll(all)
 
         rvChallenges.adapter = adapter

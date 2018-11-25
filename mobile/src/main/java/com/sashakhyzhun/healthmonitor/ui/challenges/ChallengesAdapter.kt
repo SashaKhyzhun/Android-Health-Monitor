@@ -36,8 +36,12 @@ class ChallengesAdapter(
 
         vh.challengeTitle.text = item.title
         vh.challengeDuration.text = item.duration.toString() + " of 21"
-
-        //item.enemy?.let { vh.challengeWith.text = "with $it" }
+        if (item.enemy.isNotEmpty()) {
+            vh.challengeWith.visibility = View.VISIBLE
+            vh.challengeWith.text = item.enemy
+        } else {
+            vh.challengeWith.visibility = View.INVISIBLE
+        }
         vh.parent.setOnLongClickListener {
             item.doneForToday = true
             callback.onItemLongPressed(item)

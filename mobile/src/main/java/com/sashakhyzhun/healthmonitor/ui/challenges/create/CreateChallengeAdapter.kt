@@ -35,6 +35,7 @@ class CreateChallengeAdapter (
 
         holder.tvChallengeTitle.text = challenge.title
         holder.ibCreate.setOnClickListener {
+
             callback.create(challenge)
         }
 
