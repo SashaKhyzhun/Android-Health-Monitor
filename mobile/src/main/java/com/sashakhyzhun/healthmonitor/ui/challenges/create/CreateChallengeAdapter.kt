@@ -11,11 +11,11 @@ import android.widget.TextView
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.*
 
-class CreateChallengeAdapter <T : Challenge> (
+class CreateChallengeAdapter (
         private val callback: Callback,
-        private val challenge: List<T>,
+        private val challenge: List<Challenge>,
         private val type: ChallengeType
-) : RecyclerView.Adapter<CreateChallengeAdapter<T>.MyView>() {
+) : RecyclerView.Adapter<CreateChallengeAdapter.MyView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
         return MyView(LayoutInflater.from(parent.context)
@@ -25,36 +25,18 @@ class CreateChallengeAdapter <T : Challenge> (
     override fun onBindViewHolder(holder: MyView, position: Int) {
         val challenge = challenge[position]
 
-        when (type) {
-            ChallengeType.DUEL -> {
-                challenge as ChallengeDuel
-                holder.ivIcon.visibility = View.VISIBLE
-                holder.tvAddFriend.setOnClickListener {
-                    // 1. should return friend name.
-                    // 2. create friend activity and get it from fb.
-                    // 3. change challengeType for duel.
-                    callback.addFriendClicked(challenge)
-                }
-                holder.ibCreate.setOnClickListener {
-                    callback.createDuel(challenge)
-                }
-            }
-            ChallengeType.SELF -> {
-                challenge as ChallengeSelf
-                holder.tvChallengeTitle.text = challenge.title
-                holder.ibCreate.setOnClickListener {
-                    callback.createSelf(challenge)
-                }
-            }
-            ChallengeType.FIT -> {
-                challenge as ChallengeFit
-                holder.tvChallengeTitle.text = challenge.title
-                holder.ibCreate.setOnClickListener {
-                    callback.createFit(challenge)
-                }
+        if (type == ChallengeType.DUEL) {
+            holder.ivIcon.visibility = View.VISIBLE
+            holder.tvAddFriend.visibility = View.VISIBLE
+            holder.tvAddFriend.setOnClickListener {
+                callback.addFriendClicked(challenge)
             }
         }
 
+        holder.tvChallengeTitle.text = challenge.title
+        holder.ibCreate.setOnClickListener {
+            callback.create(challenge)
+        }
 
     }
 
@@ -74,11 +56,8 @@ class CreateChallengeAdapter <T : Challenge> (
 
 
     interface Callback {
-        fun addFriendClicked(challenge: ChallengeDuel)
-
-        fun createDuel(challenge: ChallengeDuel)
-        fun createSelf(challenge: ChallengeSelf)
-        fun createFit(challenge: ChallengeFit)
+        fun addFriendClicked(challenge: Challenge)
+        fun create(challenge: Challenge)
     }
 
 

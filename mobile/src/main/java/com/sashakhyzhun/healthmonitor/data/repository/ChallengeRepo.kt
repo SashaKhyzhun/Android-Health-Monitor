@@ -1,8 +1,7 @@
 package com.sashakhyzhun.healthmonitor.data.repository
 
 import com.sashakhyzhun.healthmonitor.data.db.ChallengeDao
-import com.sashakhyzhun.healthmonitor.data.db.ChallengeDatabase
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
+import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus.*
 import io.paperdb.Paper
@@ -11,24 +10,19 @@ class ChallengeRepo : ChallengeDao {
 
     companion object {
         private const val challenges = "Challenges"
+        private const val inprogress = "-inprogress"
+        // return Paper.book().read(status.name, mutableListOf<Challenge>()) as MutableList<Challenge>
     }
 
-    override fun storeSelf(data: MutableList<ChallengeSelf>) {
-        Paper.book().write(INPROGRESS.name, data)
+
+    override fun getAllInProgress(): MutableList<Challenge> {
+        return Paper.book().read("$challenges$inprogress", mutableListOf<Challenge>())
+                as MutableList<Challenge>
     }
 
-    override fun getAllSelf(status: ChallengeStatus): MutableList<ChallengeSelf> {
-        //val asd: List<Boolean> = Paper.book().read<String>("govno") as List<Boolean>
-        return Paper.book()
-                .read(status.name, mutableListOf<ChallengeSelf>()) as MutableList<ChallengeSelf>
-    }
-
-    override fun deleteOneSelf(status: ChallengeStatus, data: ChallengeSelf) {
-        //ChallengeStatus.INPROGRESS.name
-    }
-
-    override fun deleteAllSelf(status: ChallengeStatus) {
-
+    override fun saveAllInProgress(data: MutableList<Challenge>) {
+        Paper.book().write("$challenges$inprogress", data)
     }
 
 }
+

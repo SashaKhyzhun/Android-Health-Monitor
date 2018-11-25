@@ -7,17 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
+import com.sashakhyzhun.healthmonitor.data.model.Challenge
 
 class ChallengesAdapter(
         private val ctx: Context,
-        private var challenge: List<ChallengeSelf>
+        private val challenge: List<Challenge>,
+        private val callback: Callback
 ) : RecyclerView.Adapter<ChallengesAdapter.ViewHolder>() {
 
-
+    interface Callback {
+        fun onItemLongPressed(item: Challenge)
+    }
 
     override fun onCreateViewHolder(group: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater
@@ -32,16 +35,19 @@ class ChallengesAdapter(
         val item = challenge[position]
 
         vh.challengeTitle.text = item.title
-        vh.challengeDuration.text = item.duration.toString() + " / 21"
+        vh.challengeDuration.text = item.duration.toString() + " of 21"
 
         //item.enemy?.let { vh.challengeWith.text = "with $it" }
+        vh.parent.setOnLongClickListener {
+            item.doneForToday = true
+            callback.onItemLongPressed(item)
+            true
+        }
     }
 
-    fun notifyAdapter() {
-        notifyDataSetChanged()
-    }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val parent: RelativeLayout = view.findViewById(R.id.parentPanel)
         val challengeImage: ImageView = view.findViewById(R.id.image_view_challenge_image)
         val challengeTitle: TextView = view.findViewById(R.id.text_view_challenge_title)
         val challengeDuration: TextView = view.findViewById(R.id.text_view_challenge_duration)

@@ -1,183 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentPanel"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:padding="8dp"
+    android:orientation="vertical"
+    >
 
-    <LinearLayout
-        android:id="@+id/rowBG"
+    <ImageView
+        android:src="@drawable/ic_launcher_background"
+        android:id="@+id/image_view_challenge_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        />
+
+    <TextView
+        android:id="@+id/text_view_challenge_duration"
+        android:text="17 of 21"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
-        android:padding="4dp"
-        android:orientation="horizontal">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/image_view_challenge_image" />
 
-        <RelativeLayout
-            android:id="@+id/layout_give_up"
-            android:layout_width="85dp"
-            android:layout_height="match_parent"
-            android:background="@color/swipe_option_purple"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="?android:selectableItemBackground"
-                android:gravity="center_vertical|left"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:tint="@android:color/white"
-                    app:srcCompat="@drawable/ic_remove" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="4dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Decline"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layout_check_in"
-            android:layout_width="85dp"
-            android:layout_height="match_parent"
-            android:background="@color/swipe_option_green"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="?android:selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_add"
-                    android:tint="@android:color/white"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="4dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Accept"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/rowFG"
+    <TextView
+        android:id="@+id/text_view_challenge_title"
+        android:text="No Smoking"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:clickable="true"
-        android:elevation="4dp"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/image_view_challenge_image"
+        android:maxLines="1"
+        android:textSize="16sp"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f2f2f2"
-            android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="2dp">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="6"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/image_view_challenge_image"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    />
-
-                <TextView
-                    android:id="@+id/text_view_challenge_duration"
-                    android:text="17/21"
-                    android:textSize="24sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignBottom="@+id/image_view_challenge_image" />
-
-                <TextView
-                    android:id="@+id/text_view_challenge_title"
-                    android:text="No Smoking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="4dp"
-                    android:layout_toEndOf="@+id/image_view_challenge_image"
-                    android:maxLines="1"
-                    android:textSize="16sp"
-                    />
-
-                <TextView
-                    android:id="@+id/text_view_challenge_with"
-                    android:text="with Mike"
-                    android:layout_marginStart="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_challenge_title"
-                    android:layout_toEndOf="@+id/image_view_challenge_image"
-                    android:maxLines="1"
-                    />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_marginTop="4dp"
+    <TextView
+        android:id="@+id/text_view_challenge_with"
+        android:text="with Mike"
+        android:layout_marginStart="4dp"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:background="#dadada"
-        android:elevation="4dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_challenge_title"
+        android:layout_toEndOf="@+id/image_view_challenge_image"
+        android:maxLines="1"
         />
 </RelativeLayout>
