@@ -9,16 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeEntity
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
+import com.sashakhyzhun.healthmonitor.data.model.*
 
-class CreateChallengeAdapter(
-        private val callback: Callback
-) : RecyclerView.Adapter<CreateChallengeAdapter.MyView>() {
-
-    private val challenge: MutableList<Challenge<ChallengeSelf>> = mutableListOf()
-
+class CreateChallengeAdapter <T : Challenge> (
+        private val callback: Callback,
+        private val challenge: List<T>,
+        private val type: ChallengeType
+) : RecyclerView.Adapter<CreateChallengeAdapter<T>.MyView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
         return MyView(LayoutInflater.from(parent.context)
@@ -27,17 +24,37 @@ class CreateChallengeAdapter(
 
     override fun onBindViewHolder(holder: MyView, position: Int) {
         val challenge = challenge[position]
-        holder.tvChallengeTitle.text = challenge.title
 
-        holder.tvAddFriend.setOnClickListener {
-            // 1. should return friend name.
-            // 2. create friend activity and get it from fb.
-            // 3. change challengeType for duel.
-            callback.addFriendClicked(challenge)
+        when (type) {
+            ChallengeType.DUEL -> {
+                challenge as ChallengeDuel
+                holder.ivIcon.visibility = View.VISIBLE
+                holder.tvAddFriend.setOnClickListener {
+                    // 1. should return friend name.
+                    // 2. create friend activity and get it from fb.
+                    // 3. change challengeType for duel.
+                    callback.addFriendClicked(challenge)
+                }
+                holder.ibCreate.setOnClickListener {
+                    callback.createDuel(challenge)
+                }
+            }
+            ChallengeType.SELF -> {
+                challenge as ChallengeSelf
+                holder.tvChallengeTitle.text = challenge.title
+                holder.ibCreate.setOnClickListener {
+                    callback.createSelf(challenge)
+                }
+            }
+            ChallengeType.FIT -> {
+                challenge as ChallengeFit
+                holder.tvChallengeTitle.text = challenge.title
+                holder.ibCreate.setOnClickListener {
+                    callback.createFit(challenge)
+                }
+            }
         }
-        holder.ibCreate.setOnClickListener {
-            callback.createClicked(challenge)
-        }
+
 
     }
 
@@ -48,7 +65,7 @@ class CreateChallengeAdapter(
         val ivIcon: ImageView = view.findViewById(R.id.iv_challenge_icon)
         val tvChallengeTitle: TextView = view.findViewById(R.id.tv_challenge_title)
         val tvAddFriend: TextView = view.findViewById(R.id.tv_add_friend)
-        val tvRules: TextView = view.findViewById(R.id.tv_challenge_rules)
+        //val tvRules: TextView = view.findViewById(R.id.tv_challenge_rules)
         val tvDuration: TextView = view.findViewById(R.id.tv_challenge_duration)
         val ibCreate: ImageButton = view.findViewById(R.id.image_button_create)
     }
@@ -57,8 +74,11 @@ class CreateChallengeAdapter(
 
 
     interface Callback {
-        fun <T : ChallengeEntity> addFriendClicked(challengeSelf: T)
-        fun <T : ChallengeEntity> createClicked(challengeSelf: T)
+        fun addFriendClicked(challenge: ChallengeDuel)
+
+        fun createDuel(challenge: ChallengeDuel)
+        fun createSelf(challenge: ChallengeSelf)
+        fun createFit(challenge: ChallengeFit)
     }
 
 

@@ -11,11 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus.*
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
+import com.sashakhyzhun.healthmonitor.data.repository.ChallengeRepo
 import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
-import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
+import kotlinx.android.synthetic.main.fragment_challenges.*
 import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 
@@ -25,7 +28,7 @@ class ChallengesFragment : BaseFragment() {
         const val REQUEST_NEW_CHALLENGE = 7425
     }
 
-    private var challengeSelves: MutableList<Challenge<ChallengeSelf>> = mutableListOf()
+    private var challenges: MutableList<ChallengeSelf> = mutableListOf()
 
     // UI
     private lateinit var rvChallenges: RecyclerView
@@ -35,6 +38,7 @@ class ChallengesFragment : BaseFragment() {
     private lateinit var onTouchIncomingListener: RecyclerTouchListener
 
 
+    private lateinit var repo: ChallengeRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +49,23 @@ class ChallengesFragment : BaseFragment() {
 //            presenter.onAttach(this)
 //        }
 
-
-        challengeSelves.fillWithMockChallenges()
-        adapter = ChallengesAdapter(context!!)
+        repo = ChallengeRepo()
+        val all = repo.getAllSelf(INPROGRESS)!!
+        challenges.addAll(all)
+        adapter = ChallengesAdapter(context!!, challenges)
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_challenges, container, false)
-        return view
+    override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, bundle: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_challenges, group, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (challenges.isEmpty()) {
+            tvNoChallenges.visibility = View.VISIBLE
+        }
+    }
 
     override fun setUpView(view: View) {
         fab = view.findViewById(R.id.fab)

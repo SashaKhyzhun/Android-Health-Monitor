@@ -1,25 +1,30 @@
 package com.sashakhyzhun.healthmonitor.ui.splash.login
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import com.facebook.*
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
-
-import timber.log.Timber
-import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.GoogleAuthProvider
 import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -52,6 +57,16 @@ class LoginActivity : BaseActivity(), LoginView {
         component.let {
             it.inject(this)
             mPresenter.onAttach(this)
+        }
+
+        // Permission for storage
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.CALL_PHONE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
 
         val googleSignInButton = findViewById<SignInButton>(R.id.sign_in_button)
@@ -96,6 +111,7 @@ class LoginActivity : BaseActivity(), LoginView {
             override fun onSuccess(loginResult: LoginResult) {
                 mPresenter.handleFacebookLogin(AccessToken.getCurrentAccessToken())
             }
+
             override fun onCancel() {}
             override fun onError(exception: FacebookException) {}
         })

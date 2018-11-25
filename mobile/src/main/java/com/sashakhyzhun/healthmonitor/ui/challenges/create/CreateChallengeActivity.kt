@@ -6,8 +6,15 @@ import android.os.Bundle
 import com.sashakhyzhun.healthmonitor.R
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeEntity
+import com.sashakhyzhun.healthmonitor.data.model.*
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus.*
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeType.*
+import com.sashakhyzhun.healthmonitor.data.repository.ChallengeRepo
 import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
+import com.sashakhyzhun.healthmonitor.utils.fillDuelChallenges
+import com.sashakhyzhun.healthmonitor.utils.fillFitChallenges
+import com.sashakhyzhun.healthmonitor.utils.fillSelfChallenges
+import org.jetbrains.anko.toast
 import timber.log.Timber
 
 
@@ -17,8 +24,15 @@ class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback 
         const val REQUEST_SELECT_FRIEND = 8812
     }
 
-    private lateinit var rv: RecyclerView
-    private lateinit var adapter: CreateChallengeAdapter
+    private lateinit var rvSelf: RecyclerView
+    private lateinit var rvDuel: RecyclerView
+    private lateinit var rvFit: RecyclerView
+
+    private lateinit var adapterSelf: CreateChallengeAdapter<ChallengeSelf>
+    private lateinit var adapterDuel: CreateChallengeAdapter<ChallengeDuel>
+    private lateinit var adapterFit: CreateChallengeAdapter<ChallengeFit>
+
+    private lateinit var repository: ChallengeRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +40,26 @@ class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback 
 
         getActivityComponent().inject(this)
 
+        repository = ChallengeRepo()
 
-        adapter = CreateChallengeAdapter(this)
+        adapterSelf = CreateChallengeAdapter(this, fillSelfChallenges(), SELF)
+        adapterDuel = CreateChallengeAdapter(this, fillDuelChallenges(), DUEL)
+        adapterFit = CreateChallengeAdapter(this, fillFitChallenges(), FIT)
 
 
-        rv = findViewById(R.id.rv_create_challenge)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rv.adapter = adapter
+        rvSelf = findViewById(R.id.rv_self_challenges)
+        rvSelf.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvSelf.adapter = adapterSelf
+
+        rvDuel = findViewById(R.id.rv_duel_challenges)
+        rvDuel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvDuel.adapter = adapterDuel
+
+        rvFit = findViewById(R.id.rv_fit_challenges)
+        rvFit.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvFit.adapter = adapterFit
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -49,17 +75,25 @@ class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback 
         }
     }
 
-    override fun <T : ChallengeEntity> addFriendClicked(challengeSelf: T) {
-        // 1. start activity for result.
-        // 2. receive result in onActivityResult
-        // 3. change type to 'duel'
-        // 4. save to db as active challengeSelf.
+    override fun addFriendClicked(challenge: ChallengeDuel) {
     }
 
-    override fun <T : ChallengeEntity> createClicked(challengeSelf: T) {
-        // 1. save to db as active challengeSelf.
+    override fun createSelf(challenge: ChallengeSelf) {
+        val all = repository.getAllSelf(INPROGRESS)!!
+
+        if (all.contains(challenge).not()) {
+            all.add(challenge)
+            repository.storeSelf(all)
+        } else {
+            toast("This challenge is already exists")
+        }
     }
 
+    override fun createDuel(challenge: ChallengeDuel) {
+    }
+
+    override fun createFit(challenge: ChallengeFit) {
+    }
 
 
 }

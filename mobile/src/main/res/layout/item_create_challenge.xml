@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
-    android:layout_width="250dp"
-    android:layout_height="300dp"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
     card_view:contentPadding="7dp"
     card_view:cardCornerRadius="7dp"
     card_view:cardElevation="7dp"
@@ -18,12 +18,13 @@
 
 
         <ImageView
+            android:visibility="invisible"
             android:id="@+id/iv_challenge_icon"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_add"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -32,12 +33,12 @@
         <TextView
             android:id="@+id/tv_challenge_title"
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
             android:text="Smoking free life"
             android:textColor="#fff"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="1.0"
@@ -50,49 +51,31 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
             android:text="@string/label_add_friend"
             android:textColor="#47000000"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_challenge_title" />
 
-        <TextView
-            android:id="@+id/tv_challenge_rules"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:textSize="12sp"
-            android:gravity="center_horizontal"
-            android:text="Next following 21 days you need to do not use cigarette"
-            android:textColor="#fff"
-            card_view:layout_constraintBottom_toTopOf="@+id/tv_challenge_duration"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_challenge_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="21 day"
             android:textColor="#fff"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toTopOf="@+id/image_button_create"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_add_friend" />
 
         <ImageButton
             android:id="@+id/image_button_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             card_view:layout_constraintBottom_toBottomOf="parent"

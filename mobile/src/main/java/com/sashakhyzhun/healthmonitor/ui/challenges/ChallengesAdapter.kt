@@ -9,14 +9,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 
 class ChallengesAdapter(
-        private val ctx: Context
+        private val ctx: Context,
+        private var challenge: List<ChallengeSelf>
 ) : RecyclerView.Adapter<ChallengesAdapter.ViewHolder>() {
 
-    private var challenge: List<Challenge<ChallengeSelf>>? = null
+
 
     override fun onCreateViewHolder(group: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater
@@ -24,22 +25,19 @@ class ChallengesAdapter(
                 .inflate(R.layout.item_challenge_card, group, false))
     }
 
-    override fun getItemCount(): Int = challenge?.size ?: 0
+    override fun getItemCount(): Int = challenge.size
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(vh: ViewHolder, position: Int) {
-        if (challenge != null) {
-            val item = challenge!![position]
+        val item = challenge[position]
 
-            vh.challengeTitle.text = item.title
-            vh.challengeDuration.text = item.duration.toString() + " / 21"
+        vh.challengeTitle.text = item.title
+        vh.challengeDuration.text = item.duration.toString() + " / 21"
 
-            //item.enemy?.let { vh.challengeWith.text = "with $it" }
-        }
+        //item.enemy?.let { vh.challengeWith.text = "with $it" }
     }
 
-    fun setChallenges(items: List<Challenge<ChallengeSelf>>?) {
-        challenge = items
+    fun notifyAdapter() {
         notifyDataSetChanged()
     }
 

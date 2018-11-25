@@ -6,6 +6,7 @@ import com.sashakhyzhun.healthmonitor.di.component.AppComponent
 import com.sashakhyzhun.healthmonitor.di.component.DaggerAppComponent
 import com.sashakhyzhun.healthmonitor.di.module.AppModule
 import com.sashakhyzhun.healthmonitor.utils.extension.ThreadAwareTree
+import io.paperdb.Paper
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -19,6 +20,7 @@ class HealthMonitor : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        Paper.init(this)
         applicationComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .build()

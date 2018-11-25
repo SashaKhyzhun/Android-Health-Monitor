@@ -12,6 +12,7 @@ import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.analytics.*
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
+import io.paperdb.Paper
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
         bottomNavigationView.selectedItemId = R.id.action_profile
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
