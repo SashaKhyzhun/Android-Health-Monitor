@@ -5,5 +5,4 @@ import com.sashakhyzhun.healthmonitor.ui.base.MvpPresenter
 interface ProfilePresenter<V: ProfileView> : MvpPresenter<V> {
 
 
-
 }

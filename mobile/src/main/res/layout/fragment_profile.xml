@@ -94,13 +94,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvUserEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvUserHeight" />
 
-    <View
-        android:id="@+id/viewLine1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="#e4e4e4"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserBlood" />
+
 
     <TextView
         android:id="@+id/tvPersonalInfo"
@@ -114,86 +108,122 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserBirthday" />
 
-    <TextView
-        android:id="@+id/tvHeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Blood"
-        android:textStyle="bold"
+    <LinearLayout
+        android:id="@+id/layout_blood"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPersonalInfo" />
-
-    <TextView
-        android:id="@+id/tvUserBlood"
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonalInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="2+"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Blood"
+            android:textStyle="bold"
+             />
+
+        <TextView
+            android:id="@+id/tvUserBlood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="2+"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
+
+        <View
+            android:id="@+id/viewLine1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            app:layout_constraintTop_toBottomOf="@+id/layout_blood" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_allergy"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
-
-    <!-- ===================== -->
-
-
-    <TextView
-        android:id="@+id/tvAllergy"
+        app:layout_constraintTop_toBottomOf="@+id/layout_blood"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Allergy"
-        android:textStyle="bold"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvAllergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Allergy"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_blood" />
+
+        <TextView
+            android:id="@+id/tvUserAllergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="None"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAllergy" />
+
+        <View
+            android:id="@+id/viewLine2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserAllergy"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_lifestyle"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserBlood" />
-
-    <TextView
-        android:id="@+id/tvUserAllergy"
+        app:layout_constraintTop_toBottomOf="@+id/layout_allergy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="None"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAllergy" />
+        android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/viewLine2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="#e4e4e4"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserAllergy"
-        />
+        <TextView
+            android:id="@+id/tvLifestyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Lifestyle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_allergy" />
 
-    <TextView
-        android:id="@+id/tvLifestyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Lifestyle"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewLine2" />
+        <TextView
+            android:id="@+id/tvUserLifestyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Active"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLifestyle" />
 
-    <TextView
-        android:id="@+id/tvUserLifestyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Active"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLifestyle" />
+        <View
+            android:id="@+id/viewLine3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="#e4e4e4"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserLifestyle"
+            />
 
-    <View
-        android:id="@+id/viewLine3"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="#e4e4e4"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserLifestyle"
-        />
+    </LinearLayout>
+
+
 
 
 

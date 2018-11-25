@@ -8,6 +8,5 @@ class ProfilePresenterImpl<V : ProfileView> @Inject constructor(
         mDataManager: AppDataManagerHelper
 ) : BasePresenter<V>(mDataManager), ProfilePresenter<V> {
 
-    // ...
 
 }
