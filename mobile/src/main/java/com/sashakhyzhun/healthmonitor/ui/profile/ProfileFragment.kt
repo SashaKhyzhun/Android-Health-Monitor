@@ -12,7 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
-import com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity
+import com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject

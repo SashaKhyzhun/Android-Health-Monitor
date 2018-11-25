@@ -43,9 +43,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name="com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
-        <activity android:name="com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity" />
+        <activity android:name="com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity" />
         <activity android:name="com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity" />
 
 

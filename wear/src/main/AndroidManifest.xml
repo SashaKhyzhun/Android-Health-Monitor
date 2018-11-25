@@ -41,9 +41,9 @@
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.settings.SettingsActivity" />
-        <activity android:name=".ui.settings.contact.ContactUsActivity" />
-        <activity android:name=".ui.settings.about.AboutActivity" />
+        <activity android:name=".ui.profile.settings.SettingsActivity" />
+        <activity android:name=".ui.profile.settings.contact.ContactUsActivity" />
+        <activity android:name=".ui.profile.settings.about.AboutActivity" />
 
 
         <activity android:name=".DeleteTaskActivity"

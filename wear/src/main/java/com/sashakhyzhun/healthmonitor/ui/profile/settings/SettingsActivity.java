@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.settings;
+package com.sashakhyzhun.healthmonitor.ui.profile.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.sashakhyzhun.healthmonitor.R;
 import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager;
-import com.sashakhyzhun.healthmonitor.ui.settings.about.AboutActivity;
-import com.sashakhyzhun.healthmonitor.ui.settings.contact.ContactUsActivity;
+import com.sashakhyzhun.healthmonitor.ui.profile.settings.about.AboutActivity;
+import com.sashakhyzhun.healthmonitor.ui.profile.settings.contact.ContactUsActivity;
 
 import org.jraf.android.androidwearcolorpicker.app.ColorPickActivity;
 

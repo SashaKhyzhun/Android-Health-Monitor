@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.settings
+package com.sashakhyzhun.healthmonitor.ui.profile.settings
 
 import com.sashakhyzhun.healthmonitor.ui.base.MvpView
 

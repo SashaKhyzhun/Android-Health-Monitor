@@ -6,9 +6,9 @@ import com.sashakhyzhun.healthmonitor.ui.analytics.AnalyticsFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.ChallengesFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import com.sashakhyzhun.healthmonitor.ui.healthrate.HeartRateFragment
-import com.sashakhyzhun.healthmonitor.ui.login.LoginActivity
+import com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity
 import com.sashakhyzhun.healthmonitor.ui.profile.ProfileFragment
-import com.sashakhyzhun.healthmonitor.ui.settings.SettingsActivity
+import com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity
 import com.sashakhyzhun.healthmonitor.ui.splash.SplashActivity
 import dagger.Component
 

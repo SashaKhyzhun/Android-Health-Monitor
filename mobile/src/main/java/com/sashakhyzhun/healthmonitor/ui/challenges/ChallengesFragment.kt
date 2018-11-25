@@ -1,8 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -14,12 +12,12 @@ import android.view.ViewGroup
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
 import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import com.sashakhyzhun.healthmonitor.utils.fillWithMockChallenges
 import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
-import javax.inject.Inject
 
 class ChallengesFragment : BaseFragment() {
 
@@ -27,7 +25,7 @@ class ChallengesFragment : BaseFragment() {
         const val REQUEST_NEW_CHALLENGE = 7425
     }
 
-    private var challenges: MutableList<Challenge> = mutableListOf()
+    private var challengeSelves: MutableList<Challenge<ChallengeSelf>> = mutableListOf()
 
     // UI
     private lateinit var rvChallenges: RecyclerView
@@ -36,9 +34,6 @@ class ChallengesFragment : BaseFragment() {
     private lateinit var adapter: ChallengesAdapter
     private lateinit var onTouchIncomingListener: RecyclerTouchListener
 
-    //@Inject lateinit var presenter: ChallengesPresenter<ChallengesView>
-    @Inject lateinit var linearLayout: LinearLayoutManager
-    private lateinit var mChallengesVM: ChallengesViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +45,10 @@ class ChallengesFragment : BaseFragment() {
 //            presenter.onAttach(this)
 //        }
 
-        mChallengesVM = ViewModelProviders.of(this).get(ChallengesViewModel::class.java)
 
-        //challenges.fillWithMockChallenges()
+        challengeSelves.fillWithMockChallenges()
         adapter = ChallengesAdapter(context!!)
-        mChallengesVM.getAllWords().observe(this, Observer { items ->
-            adapter.setChallenges(items)
-        })
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

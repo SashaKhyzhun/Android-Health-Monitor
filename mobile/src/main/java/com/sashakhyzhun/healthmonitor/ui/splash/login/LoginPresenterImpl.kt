@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.login
+package com.sashakhyzhun.healthmonitor.ui.splash.login
 
 import android.net.Uri
 import android.os.Bundle

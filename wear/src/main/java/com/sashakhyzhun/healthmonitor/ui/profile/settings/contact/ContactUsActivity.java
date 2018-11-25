@@ -13,9 +13,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.sashakhyzhun.healthmonitor.ui.settings.contact;
+package com.sashakhyzhun.healthmonitor.ui.profile.settings.contact;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

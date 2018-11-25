@@ -1,6 +1,5 @@
-package com.sashakhyzhun.healthmonitor.ui.login
+package com.sashakhyzhun.healthmonitor.ui.splash.login
 
-import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.sashakhyzhun.healthmonitor.ui.base.MvpView
 

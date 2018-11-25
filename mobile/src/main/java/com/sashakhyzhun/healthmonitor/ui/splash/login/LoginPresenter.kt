@@ -1,9 +1,8 @@
-package com.sashakhyzhun.healthmonitor.ui.login
+package com.sashakhyzhun.healthmonitor.ui.splash.login
 
 import android.net.Uri
 import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.ui.base.MvpPresenter
 
 interface LoginPresenter<V : LoginView> : MvpPresenter<V> {

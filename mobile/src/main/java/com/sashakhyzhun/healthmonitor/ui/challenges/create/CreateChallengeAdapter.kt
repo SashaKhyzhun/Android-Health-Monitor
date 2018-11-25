@@ -10,13 +10,14 @@ import android.widget.TextView
 
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import com.sashakhyzhun.healthmonitor.utils.loadDefaultChallenges
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeEntity
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeSelf
 
 class CreateChallengeAdapter(
         private val callback: Callback
 ) : RecyclerView.Adapter<CreateChallengeAdapter.MyView>() {
 
-    private val challenges: List<Challenge> = loadDefaultChallenges()
+    private val challenge: MutableList<Challenge<ChallengeSelf>> = mutableListOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
@@ -25,7 +26,7 @@ class CreateChallengeAdapter(
     }
 
     override fun onBindViewHolder(holder: MyView, position: Int) {
-        val challenge = challenges[position]
+        val challenge = challenge[position]
         holder.tvChallengeTitle.text = challenge.title
 
         holder.tvAddFriend.setOnClickListener {
@@ -40,7 +41,7 @@ class CreateChallengeAdapter(
 
     }
 
-    override fun getItemCount(): Int = challenges.size
+    override fun getItemCount(): Int = challenge.size
 
 
     inner class MyView(view: View) : RecyclerView.ViewHolder(view) {
@@ -56,8 +57,8 @@ class CreateChallengeAdapter(
 
 
     interface Callback {
-        fun addFriendClicked(challenge: Challenge)
-        fun createClicked(challenge: Challenge)
+        fun <T : ChallengeEntity> addFriendClicked(challengeSelf: T)
+        fun <T : ChallengeEntity> createClicked(challengeSelf: T)
     }
 
 

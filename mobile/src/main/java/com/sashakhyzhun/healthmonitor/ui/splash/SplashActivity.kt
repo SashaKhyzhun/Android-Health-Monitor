@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
 import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
-import com.sashakhyzhun.healthmonitor.ui.login.LoginActivity
+import com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity
 import javax.inject.Inject
 
 
