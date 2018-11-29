@@ -36,7 +36,8 @@ class LoginPresenterImpl<V : LoginView> @Inject constructor(
                 val id = jsonObject?.getString("id")
                 val imageUrl = "https://graph.facebook.com/$id/picture?type=normal"
 
-                createNewUser("$firstName $lastName", email!!, "", Uri.parse(imageUrl))
+                createNewUser("$firstName $lastName", email!!, "", Uri.parse(imageUrl),
+                        179, 76, "18.08.1996")
 
 
             } catch (e: JSONException) {
@@ -50,12 +51,14 @@ class LoginPresenterImpl<V : LoginView> @Inject constructor(
         request.executeAsync()
     }
 
-    override fun createNewUser(name: String, email: String, phone: String, photo: Uri?) {
+    override fun createNewUser(name: String, email: String, phone: String, photo: Uri?,
+                               height: Int, weight: Int, birthday: String) {
 
         mMvpView?.apply {
             mDataManager.setIsNewUser(false)
             Timber.d("isNewUser=${mDataManager.isNewUser()}")
-            mDataManager.createUserSession(name = name, email = email, phone = phone, photo = photo!!)
+            mDataManager.createUserSession(name = name, email = email, phone = phone,
+                    photo = photo!!, height = height, weight = weight, birthday = birthday)
             redirectUser()
         }
     }

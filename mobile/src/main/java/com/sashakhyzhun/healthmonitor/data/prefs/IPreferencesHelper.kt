@@ -5,7 +5,8 @@ import android.net.Uri
 
 interface IPreferencesHelper {
 
-    fun createUserSession(name: String, email: String, phone: String, photo: Uri)
+    fun createUserSession(name: String, email: String, phone: String, photo: Uri?,
+                          height: Int, weight: Int, birthday: String)
 
 
     fun setIsNewUser(value: Boolean)
@@ -35,8 +36,8 @@ interface IPreferencesHelper {
     fun getHeight(): Int
 
 
-    fun setBirthday(n: Long)
-    fun getBirthday(): Long
+    fun setBirthday(n: String)
+    fun getBirthday(): String
 
 
     fun setGender(gender: String)

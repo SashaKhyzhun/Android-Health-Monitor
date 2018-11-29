@@ -4,18 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 
 import com.sashakhyzhun.healthmonitor.di.ApplicationContext;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
  * @author SashaKhyzhun
- *         Created on 15.10.2018
+ * Created on 15.10.2018
  */
 
 @Singleton
@@ -30,10 +30,10 @@ public class PreferencesHelper implements IPreferencesHelper {
     private static final String KEY_USER_PHONE = "key_user_phone";
     private static final String KEY_USER_EMAIL = "key_user_email";
     private static final String KEY_USER_PHOTO = "key_user_photo";
-    private static final String KEY_USER_WIDTH = "key_user_width";
+    private static final String KEY_USER_WEIGHT = "key_user_weight";
     private static final String KEY_USER_HEIGHT = "key_user_height";
-    private static final String KEY_USER_BIRTHDAY = "key_user_BIRTHDAY";
-    private static final String KEY_USER_GENDER = "key_user_GENDER";
+    private static final String KEY_USER_BIRTHDAY = "key_user_birthday";
+    private static final String KEY_USER_GENDER = "key_user_gender";
 
     private static final int PRIVATE_MODE = 0;
     private static final int PREF_VERSION = 0;
@@ -49,15 +49,18 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor = preferences.edit();
     }
 
-
     @Override
-    public void createUserSession(@NonNull String name, @NonNull String email, @NonNull String phone, @NonNull Uri photo) {
+    public void createUserSession(@NotNull String name, @NotNull String email, @NotNull String phone, @Nullable Uri photo, int height, int weight, @NotNull String birthday) {
         editor.putBoolean(KEY_USER_IS_NEW, false);
         editor.putInt(KEY_PREF_VERSION, 1);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_EMAIL, email);
         editor.putString(KEY_USER_PHONE, phone);
         editor.putString(KEY_USER_PHOTO, String.valueOf(photo));
+
+        editor.putInt(KEY_USER_HEIGHT, height);
+        editor.putInt(KEY_USER_WEIGHT, weight);
+        editor.putString(KEY_USER_BIRTHDAY, birthday);
         editor.apply();
         editor.commit();
     }
@@ -81,6 +84,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @NotNull
     @Override
     public Uri getProfileImage() {
@@ -94,6 +98,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @NotNull
     @Override
     public String getUserName() {
@@ -108,6 +113,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @NotNull
     @Override
     public String getUserEmail() {
@@ -121,6 +127,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @NotNull
     @Override
     public String getPhoneNumber() {
@@ -130,13 +137,14 @@ public class PreferencesHelper implements IPreferencesHelper {
 
     @Override
     public void setWidth(int n) {
-        editor.putInt(KEY_USER_WIDTH, n);
+        editor.putInt(KEY_USER_WEIGHT, n);
         editor.apply();
         editor.commit();
     }
+
     @Override
     public int getWidth() {
-        return preferences.getInt(KEY_USER_WIDTH, 0);
+        return preferences.getInt(KEY_USER_WEIGHT, 0);
     }
 
 
@@ -146,6 +154,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @Override
     public int getHeight() {
         return preferences.getInt(KEY_USER_HEIGHT, 0);
@@ -154,17 +163,17 @@ public class PreferencesHelper implements IPreferencesHelper {
 
 
     @Override
-    public void setBirthday(long n) {
-        editor.putLong(KEY_USER_BIRTHDAY, n);
+    public void setBirthday(String n) {
+        editor.putString(KEY_USER_BIRTHDAY, n);
         editor.apply();
         editor.commit();
     }
+
     @Override
-    public long getBirthday() {
-        return preferences.getLong(KEY_USER_BIRTHDAY, 0L);
+    public String getBirthday() {
+        return preferences.getString(KEY_USER_BIRTHDAY, "18 August 1996");
 
     }
-
 
     @Override
     public void setGender(@NotNull String gender) {
@@ -172,16 +181,12 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @NotNull
     @Override
     public String getGender() {
-        return preferences.getString(KEY_USER_GENDER, "");
+        return preferences.getString(KEY_USER_GENDER, "Male");
     }
-
-
-
-
-
 
 
     @Override
@@ -190,6 +195,7 @@ public class PreferencesHelper implements IPreferencesHelper {
         editor.apply();
         editor.commit();
     }
+
     @Override
     public int getPrefVersion() {
         return preferences.getInt(KEY_PREF_VERSION, 0);

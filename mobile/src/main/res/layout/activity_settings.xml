@@ -21,62 +21,81 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             />
 
-        <TextView
-            android:id="@+id/tvHeight"
+        <LinearLayout
+            android:id="@+id/layout_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Height"
-            android:textStyle="bold"
-            />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvUserHeight"
+            <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Height"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/tvUserHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Centimeters"
+                />
+
+            <View
+                android:id="@+id/viewLine1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#e4e4e4"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Centimeters"
-            />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Weight"
+                android:textStyle="bold"
+                />
 
-        <View
-            android:id="@+id/viewLine1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#e4e4e4"
-            />
+            <TextView
+                android:id="@+id/tvUserWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Kilograms"
+                />
 
-        <TextView
-            android:id="@+id/tvWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Weight"
-            android:textStyle="bold"
-            />
+            <View
+                android:id="@+id/viewLine2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#e4e4e4"
+                />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvUserWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Kilograms"
-            />
-
-        <View
-            android:id="@+id/viewLine2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="#e4e4e4"
-            />
-
+    <LinearLayout
+        android:id="@+id/layout_energy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/tvDistance"
             android:layout_width="match_parent"
@@ -84,7 +103,7 @@
             android:paddingTop="8dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="Weight"
+            android:text="Energy"
             android:textStyle="bold"
             />
 
@@ -94,7 +113,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="Kilograms"
+            android:text="Calories"
             />
 
         <View
@@ -104,6 +123,14 @@
             android:layout_marginTop="8dp"
             android:background="#e4e4e4"
             />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvEnergy"
@@ -113,7 +140,7 @@
 
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="Weight"
+            android:text="Distance"
             android:textStyle="bold"
             />
 
@@ -123,7 +150,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="Kilograms"
+            android:text="Kilometers"
             />
 
         <View
@@ -133,6 +160,8 @@
             android:layout_marginTop="8dp"
             android:background="#e4e4e4"
             />
+    </LinearLayout>
+
 
         <!-- TOP PART-->
 

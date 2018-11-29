@@ -13,6 +13,7 @@ interface LoginPresenter<V : LoginView> : MvpPresenter<V> {
     fun handleGoogleLogin(account: GoogleSignInAccount)
     fun handleFacebookLogin(currentAccessToken: AccessToken)
 
-    fun createNewUser(name: String, email: String, phone: String, photo: Uri?)
+    fun createNewUser(name: String, email: String, phone: String, photo: Uri?,
+                      height: Int, weight: Int, birthday: String)
 
 }

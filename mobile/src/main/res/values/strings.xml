@@ -8,5 +8,7 @@
         No paired bluetooth devices found.\nEnable bluetooth for synchronization
     </string>
     <string name="label_add_friend"><u>add friend</u></string>
+    <string name="dialog_item_feet_inches"><![CDATA[Feet & Inches]]></string>
+    <string name="dialog_item_centimeters">Centimeters</string>
 
 </resources>

@@ -26,8 +26,8 @@ class AppDataManager
     /**
      * Preference actions
      */
-    override fun createUserSession(name: String, email: String, phone: String, photo: Uri) {
-        prefsHelper.createUserSession(name, email, phone, photo)
+    override fun createUserSession(name: String, email: String, phone: String, photo: Uri?, height: Int, weight: Int, birthday: String) {
+        prefsHelper.createUserSession(name, email, phone, photo, height, weight, birthday)
     }
 
     override fun setPreferName(i: Int) {
@@ -86,11 +86,11 @@ class AppDataManager
         return prefsHelper.getHeight()
     }
 
-    override fun setBirthday(n: Long) {
+    override fun setBirthday(n: String) {
         prefsHelper.setBirthday(n)
     }
 
-    override fun getBirthday(): Long {
+    override fun getBirthday(): String {
         return prefsHelper.getBirthday()
     }
 

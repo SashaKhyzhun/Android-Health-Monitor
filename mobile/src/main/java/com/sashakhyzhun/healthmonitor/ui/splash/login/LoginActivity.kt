@@ -132,7 +132,8 @@ class LoginActivity : BaseActivity(), LoginView {
                 val number = user?.phoneNumber ?: ""
                 val photo = user?.photoUrl ?: Uri.EMPTY
 
-                mPresenter.createNewUser(name = name, email = email, phone = number, photo = photo)
+                mPresenter.createNewUser(name = name, email = email, phone = number, photo = photo,
+                        height = 179, weight = 76, birthday = "18.08.1996")
 
             } else {
                 // If sign in fails, display a message to the user.

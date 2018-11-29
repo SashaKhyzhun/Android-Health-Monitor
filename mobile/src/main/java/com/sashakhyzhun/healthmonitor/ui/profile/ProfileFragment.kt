@@ -1,5 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -114,10 +116,14 @@ class ProfileFragment : BaseFragment(), ProfileView {
         ivUserPhoto = view.findViewById<ImageView>(R.id.ivUserPhoto)
         tvUserName = view.findViewById<TextView>(R.id.tvUserName)
         tvUserEmail = view.findViewById<TextView>(R.id.tvUserEmail)
+
         tvUserWeight = view.findViewById<TextView>(R.id.tvUserWeight)
         tvUserHeight = view.findViewById<TextView>(R.id.tvUserHeight)
+
         tvUserBirthday = view.findViewById<TextView>(R.id.tvUserBirthday)
+
         tvUserGender = view.findViewById<TextView>(R.id.tvUserGender)
+
         tvUserBlood = view.findViewById<TextView>(R.id.tvUserBlood)
         tvUserAllergy = view.findViewById<TextView>(R.id.tvUserAllergy)
         tvUserLifestyle = view.findViewById<TextView>(R.id.tvUserLifestyle)
@@ -130,14 +136,18 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
 
 
+    @SuppressLint("SetTextI18n")
     private fun setupUI(sp: PreferencesHelper) {
-        Glide.with(context!!).load(sp.getProfileImage()).into(ivUserPhoto)
+        Glide.with(context!!)
+                .load(sp.getProfileImage())
+                .apply(RequestOptions().circleCrop())
+                .into(ivUserPhoto)
 
         tvUserName.text = sp.getUserName()
         tvUserEmail.text = sp.getUserEmail()
-        tvUserWeight.text = sp.getWidth().toString()
-        tvUserHeight.text = sp.getHeight().toString()
-        tvUserBirthday.text = sp.getBirthday().toString()
+        tvUserWeight.text = sp.getWidth().toString() + " kg"
+        tvUserHeight.text = sp.getHeight().toString() + " cm"
+        tvUserBirthday.text = sp.getBirthday()
         tvUserGender.text = sp.getGender()
 
         //tvUserBlood.text = sp.getBlood()
