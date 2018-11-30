@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+    <!-- nice color:  #DA5F6A-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/image_view_dialog_icon"
+        android:gravity="center"
+        android:text="Wear Todo | Feedback"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        android:background="#0b5999"
+        android:scaleType="fitCenter" />
+
+
+
+    <ScrollView
+        android:id="@+id/scroll_view_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/image_view_dialog_icon"
+        >
+        <EditText
+            android:id="@+id/edit_text_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="type here..."
+            android:textAlignment="textStart"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            android:maxLines="5"
+            />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scroll_view_feedback"
+        android:weightSum="100"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:paddingBottom="8dp"
+        android:layout_alignParentStart="true" >
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Cancel"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#FFF"
+            android:layout_marginEnd="24dp"
+            android:gravity="center_vertical|center_horizontal"
+            style="@style/Base.Widget.AppCompat.Button.Small"
+            />
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Send"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#FFF"
+            android:layout_marginStart="24dp"
+            android:gravity="center_vertical|center_horizontal"
+            style="@style/Base.Widget.AppCompat.Button.Small"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

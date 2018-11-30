@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF">
+
+    <!-- nice color:  #DA5F6A-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/text_view_title"
+        android:gravity="center"
+        android:text="The Black Orchid"
+        android:textColor="@color/white"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:background="#0b5999"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_dialog_title"
+        android:text="@string/about_text_hey_there"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/text_view_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
+
+    <View
+        android:id="@+id/dialog_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_view_dialog_title"
+        android:background="#e4e4e4" />
+
+        <TextView
+            android:id="@+id/text_view_dialog_main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_text_who_we_are"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_below="@+id/dialog_line"
+            android:layout_centerHorizontal="true"
+            />
+    <!--</ScrollView>-->
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:textColor="#FFF"
+        android:layout_below="@+id/text_view_dialog_main_text"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal"
+        style="@style/Base.Widget.AppCompat.Button.Small"
+        />
+
+</RelativeLayout>

@@ -11,4 +11,8 @@
     <string name="dialog_item_feet_inches"><![CDATA[Feet & Inches]]></string>
     <string name="dialog_item_centimeters">Centimeters</string>
 
+    <string name="about_text_hey_there">Hey there, this app\ncreated, designed and developed \nby Sasha Khyzhun</string>
+    <string name="about_text_who_we_are">We are indie developer studio. \nWe like to play games and even more to make them</string>
+
+
 </resources>
