@@ -12,9 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus.*
-import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 import com.sashakhyzhun.healthmonitor.data.repository.ChallengeRepo
 import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
@@ -50,7 +47,6 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
     }
 
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, bundle: Bundle?): View? {
-        //updateChallengeList()
         return inflater.inflate(R.layout.fragment_challenges, group, false)
     }
 
@@ -94,6 +90,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
     private fun getAllChallenges() {
         challenges.addAll(repo.getAllInProgress())
     }
+
     private fun clearAllChallenges() {
         challenges.clear()
     }
@@ -102,7 +99,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
         fab = view.findViewById(R.id.fab)
         fab.setOnClickListener {
             startActivityForResult(
-                Intent(context, CreateChallengeActivity::class.java), REQUEST_NEW_CHALLENGE
+                    Intent(context, CreateChallengeActivity::class.java), REQUEST_NEW_CHALLENGE
             )
         }
 

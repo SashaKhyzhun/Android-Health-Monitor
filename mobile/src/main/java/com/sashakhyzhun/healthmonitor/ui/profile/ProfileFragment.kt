@@ -45,8 +45,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
      */
 
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     private lateinit var ivSettings: ImageView
     private lateinit var ivUserPhoto: ImageView
     private lateinit var tvUserName: TextView
@@ -68,7 +67,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
     @Inject
     lateinit var presenter: ProfilePresenter<ProfileView>
 
-    private lateinit var gso: GoogleSignInOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,12 +79,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
         sp = PreferencesHelper(context)
 
-        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(activity?.getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-        firebaseAuth = FirebaseAuth.getInstance()
-        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
+
 
     }
 
@@ -99,15 +92,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
         setupUI(sp)
     }
 
-
-    private fun signOutGoogle() {
-        firebaseAuth.signOut()
-        mGoogleSignInClient.signOut()
-    }
-
-    private fun signOutFacebook() {
-        LoginManager.getInstance().logOut()
-    }
 
     override fun setUpView(view: View) {
         ivSettings = view.findViewById(R.id.ivSettings)

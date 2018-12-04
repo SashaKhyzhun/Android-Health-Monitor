@@ -1,16 +1,25 @@
 package com.sashakhyzhun.healthmonitor.ui.profile.settings
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Window
 import android.widget.*
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
+import com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity
 import com.sashakhyzhun.healthmonitor.utils.builder.CustomUI
+import org.jetbrains.anko.alert
 import javax.inject.Inject
 
 
@@ -28,6 +37,10 @@ class SettingsActivity : BaseActivity(), SettingsView {
     @Inject
     lateinit var presenter: SettingsPresenter<SettingsView>
 
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var gso: GoogleSignInOptions
+
     private lateinit var rbCentimeters: RadioButton
     private lateinit var rbFeetAndInches: RadioButton
     private var isSelectedCentimeters = true
@@ -41,6 +54,14 @@ class SettingsActivity : BaseActivity(), SettingsView {
             it.inject(this)
             presenter.onAttach(this)
         }
+
+
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+        firebaseAuth = FirebaseAuth.getInstance()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
 
         val layoutHeight = findViewById<LinearLayout>(R.id.layout_height)
@@ -69,6 +90,10 @@ class SettingsActivity : BaseActivity(), SettingsView {
         }
         findViewById<TextView>(R.id.tvRateTheApp).setOnClickListener {
             redirectToRateTheApp()
+        }
+
+        findViewById<TextView>(R.id.tvLogout).setOnClickListener {
+            showLogoutDialog(this)
         }
 
     }
@@ -110,7 +135,7 @@ class SettingsActivity : BaseActivity(), SettingsView {
                 val email = Intent(Intent.ACTION_SENDTO).also {
                     it.data = Uri.parse("mailto:")
                     it.putExtra(Intent.EXTRA_EMAIL, recipients)
-                    it.putExtra(Intent.EXTRA_SUBJECT, "Wear Todo | Feedback")
+                    it.putExtra(Intent.EXTRA_SUBJECT, "HealthMonitor | Feedback")
                     it.putExtra(Intent.EXTRA_TEXT, etFeedback.text.toString())
                 }
                 try {
@@ -160,6 +185,33 @@ class SettingsActivity : BaseActivity(), SettingsView {
             rbCentimeters.isChecked = false
             rbFeetAndInches.isChecked = true
         }
+    }
+
+    private fun showLogoutDialog(activity: Activity) {
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle("Attention")
+        dialog.setMessage("Are you sure you want to log out?")
+        dialog.setPositiveButton("Yes") { _, _ ->
+            signOutFacebook()
+            signOutGoogle()
+            // sp.reset?
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
+        dialog.setNeutralButton("Cancel") { alert, _ ->
+            alert.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+    private fun signOutGoogle() {
+        firebaseAuth.signOut()
+        mGoogleSignInClient.signOut()
+    }
+
+    private fun signOutFacebook() {
+        LoginManager.getInstance().logOut()
     }
 
     companion object {
