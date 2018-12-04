@@ -81,8 +81,8 @@ class AnalyticsFragment : BaseFragment(), AnalyticsView {
         entries.add(Entry(3F, 4F))
 
         val dataSet = LineDataSet(entries, "Customized values")
-        dataSet.color = ContextCompat.getColor(context!!, R.color.colorPrimary)
-        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.colorPrimaryDark)
+        dataSet.color = ContextCompat.getColor(context!!, R.color.primary)
+        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.primary)
 
         //****
         // Controlling X axis
@@ -122,8 +122,8 @@ class AnalyticsFragment : BaseFragment(), AnalyticsView {
         entries.add(BubbleEntry(4F, 4F, 4F))
 
         val dataSet = BubbleDataSet(entries, "Customized values")
-        dataSet.color = ContextCompat.getColor(context!!, R.color.colorPrimary)
-        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.colorPrimaryDark)
+        dataSet.color = ContextCompat.getColor(context!!, R.color.primary)
+        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.primary_dark)
 
         //****
         // Controlling X axis
@@ -163,8 +163,8 @@ class AnalyticsFragment : BaseFragment(), AnalyticsView {
         entries.add(BarEntry(3F, 4F))
 
         val dataSet = BarDataSet(entries, "Customized values")
-        dataSet.color = ContextCompat.getColor(context!!, R.color.colorPrimary)
-        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.colorPrimaryDark)
+        dataSet.color = ContextCompat.getColor(context!!, R.color.primary)
+        dataSet.valueTextColor = ContextCompat.getColor(context!!, R.color.primary_dark)
 
         //****
         // Controlling X axis

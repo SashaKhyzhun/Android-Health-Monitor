@@ -11,7 +11,7 @@
         android:id="@+id/text_view_title"
         android:gravity="center"
         android:text="The Black Orchid"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:background="#0b5999"
         android:scaleType="fitCenter" />

@@ -12,7 +12,7 @@
         android:gravity="center"
         android:text="Wear Todo | Feedback"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:background="#0b5999"
         android:scaleType="fitCenter" />
 
