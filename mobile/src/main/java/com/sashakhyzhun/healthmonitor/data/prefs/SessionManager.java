@@ -20,7 +20,7 @@ public class SessionManager {
     private static final String PREFER_NAME = "health_monitor_pref";
     private static final String KEY_PREF_VERSION = "pref_version";
 
-    private static final String KEY_USER_IS_NEW = "KEY_USER_IS_NEW";
+    private static final String KEY_USER_IS_LOGGED_IN = "KEY_USER_IS_LOGGED_IN";
     private static final String KEY_USER_NAME = "key_user_name";
     private static final String KEY_USER_PHONE = "key_user_phone";
     private static final String KEY_USER_EMAIL = "key_user_email";
@@ -45,7 +45,7 @@ public class SessionManager {
 
 
     public void createUserSession(@NotNull String name, @NotNull String email, @NotNull String phone, @Nullable Uri photo, int height, int weight, @NotNull String birthday) {
-        editor.putString(KEY_USER_IS_NEW, "net");
+        editor.putBoolean(KEY_USER_IS_LOGGED_IN, true);
         editor.putInt(KEY_PREF_VERSION, 1);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_EMAIL, email);
@@ -66,14 +66,14 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void setIsNewUser(String value) {
-        editor.putString(KEY_USER_IS_NEW, value);
+    public void setLoggedInStatus(boolean value) {
+        editor.putBoolean(KEY_USER_IS_LOGGED_IN, value);
         editor.apply();
         editor.commit();
     }
 
-    public String isNewUser() {
-        return preferences.getString(KEY_USER_IS_NEW, "first_login");
+    public Boolean isLoggedIn() {
+        return preferences.getBoolean(KEY_USER_IS_LOGGED_IN, false);
     }
 
 

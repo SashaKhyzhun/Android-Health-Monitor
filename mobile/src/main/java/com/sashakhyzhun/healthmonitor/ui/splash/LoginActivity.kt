@@ -165,9 +165,9 @@ class LoginActivity : AppCompatActivity() {
     private fun createNewUser(name: String, email: String, phone: String, photo: Uri?,
                                height: Int, weight: Int, birthday: String) {
 
-        Timber.d("createNewUser | before isNewUser=${session.isNewUser}")
+        Timber.d("createNewUser | before isLoggedIn=${session.isLoggedIn}")
         session.createUserSession(name, email,  phone, photo!!, height, weight,  birthday)
-        Timber.d("createNewUser | after isNewUser=${session.isNewUser}")
+        Timber.d("createNewUser | after isLoggedIn=${session.isLoggedIn}")
 
         startActivity(Intent(this, MainActivity::class.java))
     }

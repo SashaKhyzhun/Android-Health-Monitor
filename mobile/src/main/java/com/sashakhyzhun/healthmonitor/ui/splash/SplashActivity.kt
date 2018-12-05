@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
-import org.jetbrains.anko.toast
 import timber.log.Timber
 
 
@@ -21,13 +20,11 @@ class SplashActivity : AppCompatActivity() {
 
         session = SessionManager(this)
 
-        Timber.d("is new user = ${session.isNewUser}")
+        Timber.d("is logged in = ${session.isLoggedIn}")
         Handler().postDelayed({
-            when {
-                session.isNewUser == "net" -> startMainActivity()
-                session.isNewUser == "da" -> startLoginActivity()
-                session.isNewUser == "first_login" -> startLoginActivity()
-                else -> toast("ELSE BITCH")
+            when(session.isLoggedIn) {
+                true -> startMainActivity()
+                false -> startLoginActivity()
             }
         }, 1000)
     }
