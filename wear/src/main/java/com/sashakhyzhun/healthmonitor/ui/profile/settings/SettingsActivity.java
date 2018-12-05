@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sashakhyzhun.healthmonitor.R;
-import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager;
+import com.sashakhyzhun.healthmonitor.data.prefs.WearSessionManager;
 import com.sashakhyzhun.healthmonitor.ui.profile.settings.about.AboutActivity;
 import com.sashakhyzhun.healthmonitor.ui.profile.settings.contact.ContactUsActivity;
 
@@ -18,13 +18,13 @@ public class SettingsActivity extends WearableActivity implements View.OnClickLi
     private static final int REQUEST_PICK_TEXT_COLOR = 1111;
     private static final int REQUEST_PICK_BG_COLOR = 2222;
     private TextView tvEmpty, tvAbout, tvContactUs, tvChangeBGColor, tvChangeTextColor;
-    private SessionManager ss;
+    private WearSessionManager ss;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        ss = SessionManager.getInstance(getApplicationContext());
+        ss = WearSessionManager.getInstance(getApplicationContext());
 
         tvEmpty = findViewById(R.id.tvEmpty);
         tvAbout = findViewById(R.id.tvAbout);

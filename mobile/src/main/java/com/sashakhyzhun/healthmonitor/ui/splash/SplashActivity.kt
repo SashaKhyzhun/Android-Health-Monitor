@@ -2,38 +2,41 @@ package com.sashakhyzhun.healthmonitor.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.support.v7.app.AppCompatActivity
 import com.sashakhyzhun.healthmonitor.R
+import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
-import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
-import com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity
-import javax.inject.Inject
+import org.jetbrains.anko.toast
+import timber.log.Timber
 
 
-class SplashActivity : BaseActivity(), SplashView {
+class SplashActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var mPresenter: SplashPresenter<SplashView>
-
+    private lateinit var session: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val component = getActivityComponent()
-        component.let {
-            it.inject(this)
-            mPresenter.onAttach(this)
-        }
+        session = SessionManager(this)
 
-
-        mPresenter.redirectUserToNeededPage()
+        Timber.d("is new user = ${session.isNewUser}")
+        Handler().postDelayed({
+            when {
+                session.isNewUser == "net" -> startMainActivity()
+                session.isNewUser == "da" -> startLoginActivity()
+                session.isNewUser == "first_login" -> startLoginActivity()
+                else -> toast("ELSE BITCH")
+            }
+        }, 1000)
     }
 
-    override fun startMainActivity() {
+    private fun startMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-    override fun startLoginActivity() {
+    private fun startLoginActivity() {
         startActivity(Intent(this, LoginActivity::class.java))
     }
 

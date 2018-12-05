@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,14 +14,13 @@ import android.view.ViewGroup
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.repository.ChallengeRepo
-import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
 import com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity
 import kotlinx.android.synthetic.main.fragment_challenges.*
 import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 
 
-class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
+class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
 
     companion object {
         const val REQUEST_NEW_CHALLENGE = 7425
@@ -31,9 +31,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
     // UI
     private lateinit var rvChallenges: RecyclerView
     private lateinit var fab: FloatingActionButton
-
     private lateinit var adapter: ChallengesAdapter
-    //private lateinit var onTouchIncomingListener: RecyclerTouchListener
 
 
     private lateinit var repo: ChallengeRepo
@@ -54,6 +52,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
         super.onViewCreated(view, savedInstanceState)
         println("onViewCreated")
 
+        setUpView(view)
         updateUI()
 
         if (challenges.isEmpty()) {
@@ -95,7 +94,7 @@ class ChallengesFragment : BaseFragment(), ChallengesAdapter.Callback {
         challenges.clear()
     }
 
-    override fun setUpView(view: View) {
+    private fun setUpView(view: View) {
         fab = view.findViewById(R.id.fab)
         fab.setOnClickListener {
             startActivityForResult(

@@ -1,4 +1,4 @@
-package com.sashakhyzhun.healthmonitor.ui.splash.login
+package com.sashakhyzhun.healthmonitor.ui.splash
 
 import android.Manifest
 import android.content.Intent
@@ -7,10 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
+import android.support.v7.app.AppCompatActivity
+import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,13 +20,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sashakhyzhun.healthmonitor.R
+import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager
 import com.sashakhyzhun.healthmonitor.ui.MainActivity
-import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
+import org.json.JSONException
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class LoginActivity : BaseActivity(), LoginView {
+class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -42,9 +40,7 @@ class LoginActivity : BaseActivity(), LoginView {
     private lateinit var facebookSignInButton: LoginButton
     private lateinit var callbackManager: CallbackManager
 
-    @Inject
-    lateinit var mPresenter: LoginPresenter<LoginView>
-    @Inject
+    private lateinit var session: SessionManager
     lateinit var gso: GoogleSignInOptions
 
 
@@ -53,11 +49,11 @@ class LoginActivity : BaseActivity(), LoginView {
         setContentView(R.layout.activity_login)
         Timber.d("called")
 
-        val component = getActivityComponent()
-        component.let {
-            it.inject(this)
-            mPresenter.onAttach(this)
-        }
+        session = SessionManager(this)
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
         // Permission for storage
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
@@ -76,8 +72,8 @@ class LoginActivity : BaseActivity(), LoginView {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         mAuth = FirebaseAuth.getInstance()
 
-        googleSignInButton.setOnClickListener { mPresenter.signInGoogle() }
-        facebookSignInButton.setOnClickListener { mPresenter.signInFacebook() }
+        googleSignInButton.setOnClickListener { onClickLoginWithGoogle() }
+        facebookSignInButton.setOnClickListener { onClickLoginWithFacebook() }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -90,7 +86,7 @@ class LoginActivity : BaseActivity(), LoginView {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
 
-                mPresenter.handleGoogleLogin(account!!)
+                onSuccessGoogleLogin(account!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Timber.i("Google sign in failed: $e")
@@ -101,15 +97,15 @@ class LoginActivity : BaseActivity(), LoginView {
         }
     }
 
-    override fun onClickLoginWithGoogle() {
+    private fun onClickLoginWithGoogle() {
         val signInIntent = mGoogleSignInClient!!.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
-    override fun onClickLoginWithFacebook() {
+    private fun onClickLoginWithFacebook() {
         facebookSignInButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                mPresenter.handleFacebookLogin(AccessToken.getCurrentAccessToken())
+                handleFacebookLogin(AccessToken.getCurrentAccessToken())
             }
 
             override fun onCancel() {}
@@ -117,7 +113,7 @@ class LoginActivity : BaseActivity(), LoginView {
         })
     }
 
-    override fun onSuccessGoogleLogin(account: GoogleSignInAccount) {
+    private fun onSuccessGoogleLogin(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         mAuth!!.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -125,26 +121,56 @@ class LoginActivity : BaseActivity(), LoginView {
                 Timber.i("signInWithCredential:success")
                 val user = mAuth!!.currentUser
 
-                hideLoading()
 
                 val name = user?.displayName ?: ""
                 val email = user?.email ?: ""
                 val number = user?.phoneNumber ?: ""
                 val photo = user?.photoUrl ?: Uri.EMPTY
 
-                mPresenter.createNewUser(name = name, email = email, phone = number, photo = photo,
+                createNewUser(name = name, email = email, phone = number, photo = photo,
                         height = 179, weight = 76, birthday = "18.08.1996")
 
             } else {
                 // If sign in fails, display a message to the user.
                 Timber.e("signInWithCredential:failure ${task.exception!!}")
             }
-            hideLoading()
+
         }
     }
 
-    override fun redirectUser() {
+    private fun handleFacebookLogin(currentAccessToken: AccessToken) {
+        val request = GraphRequest.newMeRequest(currentAccessToken) { jsonObject, _ ->
+            try {
+                val firstName = jsonObject?.getString("first_name")
+                val lastName = jsonObject?.getString("last_name")
+                val email = jsonObject?.getString("email")
+                val id = jsonObject?.getString("id")
+                val imageUrl = "https://graph.facebook.com/$id/picture?type=normal"
+
+                createNewUser("$firstName $lastName", email!!, "", Uri.parse(imageUrl),
+                        179, 76, "18.08.1996")
+
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        val parameters = Bundle()
+        parameters.putString("fields", "first_name,last_name,email,id")
+        request.parameters = parameters
+        request.executeAsync()
+    }
+
+    private fun createNewUser(name: String, email: String, phone: String, photo: Uri?,
+                               height: Int, weight: Int, birthday: String) {
+
+        Timber.d("createNewUser | before isNewUser=${session.isNewUser}")
+        session.createUserSession(name, email,  phone, photo!!, height, weight,  birthday)
+        Timber.d("createNewUser | after isNewUser=${session.isNewUser}")
+
         startActivity(Intent(this, MainActivity::class.java))
     }
+
 }
 

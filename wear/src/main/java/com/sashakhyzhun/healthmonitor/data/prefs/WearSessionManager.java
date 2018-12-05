@@ -10,7 +10,7 @@ import com.sashakhyzhun.healthmonitor.ui.tutorial.TutorialActivity;
 
 import java.util.HashMap;
 
-public class SessionManager {
+public class WearSessionManager {
 
     private static final String KEY_TEXT_COLOR = "textColor";       // selected theme in settings
     private static final String KEY_BG_COLOR = "bgColor";           // selected theme in settings
@@ -18,7 +18,7 @@ public class SessionManager {
     private static final String PREFER_NAME = "PreferName";         // Shared pref file name
     private static final String IS_USER_LOGIN = "IsUserLoggedIn";   // All Shared Preferences Keys
     private static final String PREFER_VESION = "PreferVersion";    // Version of Shared Prefs.
-    private static SessionManager instance = null;
+    private static WearSessionManager instance = null;
 
     private int PRIVATE_MODE = 0;                                   // Shared pref mode
     private SharedPreferences pref;                                 // Shared Preferences reference
@@ -30,15 +30,15 @@ public class SessionManager {
      * @param context - simple context from class when we had created session manager.
      */
     @SuppressLint("CommitPrefEdits")
-    private SessionManager(Context context) {
+    private WearSessionManager(Context context) {
         this.context = context;
         pref = context.getSharedPreferences(PREFER_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
-    public static SessionManager getInstance(Context context) {
+    public static WearSessionManager getInstance(Context context) {
         if (instance == null) {
-            instance = new SessionManager(context);
+            instance = new WearSessionManager(context);
         }
         return instance;
     }

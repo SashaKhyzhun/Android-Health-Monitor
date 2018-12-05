@@ -26,6 +26,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--TODO: Add some description from champy for all types of the challenge -->
+        <!--TODO: Update card's design, padding, size, text, etc. -->
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_self_challenges"
             android:layout_width="wrap_content"

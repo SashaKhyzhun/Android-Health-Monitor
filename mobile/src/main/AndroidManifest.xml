@@ -30,9 +30,9 @@
 
     <application
         android:name=".HealthMonitor"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_black"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_black"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -46,11 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity" />
+        <activity android:name="com.sashakhyzhun.healthmonitor.ui.splash.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
-        <activity android:name="com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity" />
-        <activity android:name="com.sashakhyzhun.healthmonitor.ui.challenges.create.CreateChallengeActivity" />
-
+        <activity android:name=".ui.profile.SettingsActivity" />
+        <activity android:name=".ui.challenges.create.CreateChallengeActivity" />
+        <activity android:name=".ui.challenges.friends.FriendsActivity" />
 
 
 
@@ -67,7 +67,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.challenges.friends.FriendsActivity" />
+
 
 
     </application>

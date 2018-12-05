@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.sashakhyzhun.healthmonitor.R;
-import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager;
+import com.sashakhyzhun.healthmonitor.data.prefs.WearSessionManager;
 import com.sashakhyzhun.healthmonitor.ui.splash.SplashActivity;
 
 /**
@@ -33,14 +33,14 @@ import com.sashakhyzhun.healthmonitor.ui.splash.SplashActivity;
  */
 public class TutorialActivity extends WearableActivity {
 
-    private SessionManager sessionManager;
+    private WearSessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        sessionManager = SessionManager.getInstance(getApplicationContext());
+        sessionManager = WearSessionManager.getInstance(getApplicationContext());
         GridViewPager mPager = findViewById(R.id.fragment_container);
         TutorialAdapter mAdapter = new TutorialAdapter(this, getFragmentManager());
         mPager.setAdapter(mAdapter);

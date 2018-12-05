@@ -9,6 +9,9 @@ import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
  */
 
 
+//TODO: Update these texts from champy app.
+//TODO: Update these images from champy app.
+
 fun fillSelfChallenges(): List<Challenge> {
     return listOf(
             Challenge("self title 1", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),

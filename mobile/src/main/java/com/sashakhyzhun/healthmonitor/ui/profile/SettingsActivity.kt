@@ -1,13 +1,13 @@
-package com.sashakhyzhun.healthmonitor.ui.profile.settings
+package com.sashakhyzhun.healthmonitor.ui.profile
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.widget.*
 import com.facebook.login.LoginManager
@@ -16,14 +16,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
-import com.sashakhyzhun.healthmonitor.ui.splash.login.LoginActivity
+import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager
+import com.sashakhyzhun.healthmonitor.ui.splash.LoginActivity
 import com.sashakhyzhun.healthmonitor.utils.builder.CustomUI
-import org.jetbrains.anko.alert
-import javax.inject.Inject
 
 
-class SettingsActivity : BaseActivity(), SettingsView {
+class SettingsActivity : AppCompatActivity() {
 
     /**
      * Items:
@@ -34,12 +32,10 @@ class SettingsActivity : BaseActivity(), SettingsView {
      *
      */
 
-    @Inject
-    lateinit var presenter: SettingsPresenter<SettingsView>
-
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var gso: GoogleSignInOptions
+    private lateinit var sessionManager: SessionManager
 
     private lateinit var rbCentimeters: RadioButton
     private lateinit var rbFeetAndInches: RadioButton
@@ -49,20 +45,13 @@ class SettingsActivity : BaseActivity(), SettingsView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val component = getActivityComponent()
-        component.let {
-            it.inject(this)
-            presenter.onAttach(this)
-        }
-
-
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
         firebaseAuth = FirebaseAuth.getInstance()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
+        sessionManager = SessionManager(this)
 
         val layoutHeight = findViewById<LinearLayout>(R.id.layout_height)
         val layoutWeight = findViewById<LinearLayout>(R.id.layout_weight)
@@ -194,7 +183,7 @@ class SettingsActivity : BaseActivity(), SettingsView {
         dialog.setPositiveButton("Yes") { _, _ ->
             signOutFacebook()
             signOutGoogle()
-            // sp.reset?
+            sessionManager.clearUserSession()
             startActivity(Intent(activity, LoginActivity::class.java))
         }
         dialog.setNeutralButton("Cancel") { alert, _ ->

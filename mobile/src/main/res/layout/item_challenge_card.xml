@@ -9,7 +9,7 @@
     >
 
     <ImageView
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_sword"
         android:id="@+id/image_view_challenge_image"
         android:layout_width="65dp"
         android:layout_height="65dp"

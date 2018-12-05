@@ -61,14 +61,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
-        }
-
-        this.doubleBackToExitPressedOnce = true
-        toast("Please click BACK again to exit")
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+        moveTaskToBack(false)
     }
 
 

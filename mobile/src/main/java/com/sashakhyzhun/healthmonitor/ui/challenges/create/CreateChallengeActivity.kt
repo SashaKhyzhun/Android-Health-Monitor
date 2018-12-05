@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.sashakhyzhun.healthmonitor.R
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,7 +15,6 @@ import android.widget.TextView
 import com.sashakhyzhun.healthmonitor.data.model.*
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeType.*
 import com.sashakhyzhun.healthmonitor.data.repository.ChallengeRepo
-import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
 import com.sashakhyzhun.healthmonitor.ui.challenges.friends.FriendsActivity
 import com.sashakhyzhun.healthmonitor.utils.fillDuelChallenges
 import com.sashakhyzhun.healthmonitor.utils.fillFitChallenges
@@ -23,7 +23,7 @@ import org.jetbrains.anko.toast
 import timber.log.Timber
 
 
-class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback {
+class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Callback {
 
     companion object {
         const val REQUEST_SELECT_FRIEND = 8812
@@ -45,8 +45,6 @@ class CreateChallengeActivity : BaseActivity(), CreateChallengeAdapter.Callback 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
-
-        getActivityComponent().inject(this)
 
         tvDuelName = findViewById<TextView>(R.id.tv_duel_name)
         repository = ChallengeRepo()

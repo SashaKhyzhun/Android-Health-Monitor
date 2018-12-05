@@ -1,6 +1,7 @@
 package com.sashakhyzhun.healthmonitor.ui.analytics
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,9 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.BubbleChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.*
-import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
-import javax.inject.Inject
 
 
-class AnalyticsFragment : BaseFragment(), AnalyticsView {
+class AnalyticsFragment : Fragment() {
 
     /**
      * Analyze:
@@ -40,18 +39,8 @@ class AnalyticsFragment : BaseFragment(), AnalyticsView {
      *
      *
      */
-
-    @Inject
-    lateinit var presenter: AnalyticsPresenter<AnalyticsView>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val component = getActivityComponent()
-        component?.let {
-            it.inject(this)
-            presenter.onAttach(this)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,9 +58,6 @@ class AnalyticsFragment : BaseFragment(), AnalyticsView {
         return view
     }
 
-    override fun setUpView(view: View) {
-
-    }
 
     private fun createLineChart(chart: LineChart) {
         val entries = ArrayList<Entry>()

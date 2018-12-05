@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sashakhyzhun.healthmonitor.R;
-import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager;
+import com.sashakhyzhun.healthmonitor.data.prefs.WearSessionManager;
 
 import java.util.List;
 
@@ -37,13 +37,13 @@ public class ContactUsActivity extends WearableActivity implements View.OnClickL
 
     private static final String recipient = "sasha.khyzhun@gmail.com";
     private TextView tvTapToRecord, tvYouCanWriteToUs, tvOR;
-    private SessionManager ss;
+    private WearSessionManager ss;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
-        ss = SessionManager.getInstance(getApplicationContext());
+        ss = WearSessionManager.getInstance(getApplicationContext());
 
 
         tvOR = findViewById(R.id.textViewOR);

@@ -3,13 +3,13 @@ package com.sashakhyzhun.healthmonitor.ui.challenges.friends
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Friend
-import com.sashakhyzhun.healthmonitor.ui.base.BaseActivity
 
-class FriendsActivity : BaseActivity(), FriendsAdapter.FriendsCallback {
+class FriendsActivity : AppCompatActivity(), FriendsAdapter.FriendsCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

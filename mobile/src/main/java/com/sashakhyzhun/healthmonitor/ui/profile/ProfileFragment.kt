@@ -2,6 +2,7 @@ package com.sashakhyzhun.healthmonitor.ui.profile
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,40 +11,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.facebook.login.LoginManager
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.prefs.PreferencesHelper
-import com.sashakhyzhun.healthmonitor.ui.base.BaseFragment
-import com.sashakhyzhun.healthmonitor.ui.profile.settings.SettingsActivity
+import com.sashakhyzhun.healthmonitor.data.prefs.SessionManager
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
-import javax.inject.Inject
 
-class ProfileFragment : BaseFragment(), ProfileView {
-
-    /**
-     * Items:
-     *
-     * Name
-     * Email
-     * Photo
-     * Gender
-     * Date of birth
-     * Height
-     * Weight
-     *
-     * Blood
-     * Allergy
-     * Lifestyle
-     *
-     * Personal Goals:
-     *
-     */
-
+class ProfileFragment : Fragment() {
 
 
     private lateinit var ivSettings: ImageView
@@ -62,25 +35,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
     private lateinit var layoutAllergy: LinearLayout
     private lateinit var layoutLifestyle: LinearLayout
 
-    private lateinit var sp: PreferencesHelper
-
-    @Inject
-    lateinit var presenter: ProfilePresenter<ProfileView>
+    private lateinit var sp: SessionManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val component = getActivityComponent()
-        component?.let {
-            it.inject(this)
-            presenter.onAttach(this)
-        }
-
-        sp = PreferencesHelper(context)
-
-
-
+        sp = SessionManager(context)
     }
 
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View? {
@@ -89,11 +49,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView(view)
         setupUI(sp)
     }
 
 
-    override fun setUpView(view: View) {
+    private fun initView(view: View) {
         ivSettings = view.findViewById(R.id.ivSettings)
         ivSettings.onClick { startActivity<SettingsActivity>() }
 
@@ -121,18 +82,18 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
 
     @SuppressLint("SetTextI18n")
-    private fun setupUI(sp: PreferencesHelper) {
+    private fun setupUI(sp: SessionManager) {
         Glide.with(context!!)
-                .load(sp.getProfileImage())
+                .load(sp.profileImage)
                 .apply(RequestOptions().circleCrop())
                 .into(ivUserPhoto)
 
-        tvUserName.text = sp.getUserName()
-        tvUserEmail.text = sp.getUserEmail()
-        tvUserWeight.text = sp.getWidth().toString() + " kg"
-        tvUserHeight.text = sp.getHeight().toString() + " cm"
-        tvUserBirthday.text = sp.getBirthday()
-        tvUserGender.text = sp.getGender()
+        tvUserName.text = sp.userName
+        tvUserEmail.text = sp.userEmail
+        tvUserWeight.text = sp.width.toString() + " kg"
+        tvUserHeight.text = sp.height.toString() + " cm"
+        tvUserBirthday.text = sp.birthday
+        tvUserGender.text = sp.gender
 
         //tvUserBlood.text = sp.getBlood()
         //tvUserAllergy.text = sp.getAllergy()
