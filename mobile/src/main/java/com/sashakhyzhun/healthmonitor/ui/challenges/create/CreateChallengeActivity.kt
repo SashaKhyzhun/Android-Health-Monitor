@@ -90,16 +90,16 @@ class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Call
     override fun create(challenge: Challenge) {
         challenge.enemy = enemy
         val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setTitle("Alert")
-        alertDialog.setMessage("Alert message to be shown")
+        alertDialog.setTitle("Confirmation")
+        alertDialog.setMessage("Please, confirm you want to create this challenge")
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Create") { dialog, _ ->
+
             val all = repository.getAllInProgress()
             val isExist = all.map { it.title }.contains(challenge.title)
 
             if (isExist.not()) {
                 all.add(challenge)
                 repository.saveAllInProgress(all)
-
 
                 setResult(Activity.RESULT_OK)
                 finish()

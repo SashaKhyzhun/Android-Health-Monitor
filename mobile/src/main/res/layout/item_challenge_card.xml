@@ -9,7 +9,6 @@
     >
 
     <ImageView
-        android:src="@drawable/ic_sword"
         android:id="@+id/image_view_challenge_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -17,17 +16,24 @@
 
     <TextView
         android:id="@+id/text_view_challenge_duration"
-        android:text="17 of 21"
-        android:textSize="24sp"
+        android:text="7 of 21"
+        android:textSize="20sp"
+        android:textColor="@color/primary_text"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_above="@+id/line"
         android:layout_alignBottom="@+id/image_view_challenge_image" />
 
     <TextView
         android:id="@+id/text_view_challenge_title"
         android:text="No Smoking"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:textAlignment="textStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -39,7 +45,9 @@
 
     <TextView
         android:id="@+id/text_view_challenge_with"
-        android:text=""
+        android:textStyle="normal"
+        android:textColor="@color/secondary_text"
+        android:textAlignment="textStart"
         android:layout_marginStart="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,4 +55,13 @@
         android:layout_toEndOf="@+id/image_view_challenge_image"
         android:maxLines="1"
         />
+
+    <View
+        android:id="@+id/line"
+        android:layout_below="@id/image_view_challenge_image"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#23000000" />
+
 </RelativeLayout>

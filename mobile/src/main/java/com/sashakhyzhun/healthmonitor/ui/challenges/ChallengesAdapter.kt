@@ -34,8 +34,17 @@ class ChallengesAdapter(
     override fun onBindViewHolder(vh: ViewHolder, position: Int) {
         val item = challenge[position]
 
+        vh.challengeImage.setImageResource(item.image)
         vh.challengeTitle.text = item.title
-        vh.challengeDuration.text = item.duration.toString() + " of 21"
+
+        if (item.doneForToday.not()) {
+            vh.challengeDuration.textSize = 12F
+            vh.challengeDuration.text = "Done\nfor\ntoday?"
+        } else {
+            vh.challengeDuration.textSize = 20F
+            vh.challengeDuration.text = item.currentDay.toString() + " of 21"
+        }
+
         if (item.enemy.isNotEmpty()) {
             vh.challengeWith.visibility = View.VISIBLE
             vh.challengeWith.text = item.enemy
@@ -43,7 +52,6 @@ class ChallengesAdapter(
             vh.challengeWith.visibility = View.INVISIBLE
         }
         vh.parent.setOnLongClickListener {
-            item.doneForToday = true
             callback.onItemLongPressed(item)
             true
         }

@@ -11,8 +11,9 @@ import com.sashakhyzhun.healthmonitor.R
 
 data class Challenge(
         var title: String,
-        var duration: Int,
-        var doneForToday: Boolean,
+        var currentDay: Int = 1,
+        var duration: Int = 21,
+        var doneForToday: Boolean = false,
         var lastCheckIn: Long = 0L,
         var enemy: String = "",
         var type: ChallengeType,

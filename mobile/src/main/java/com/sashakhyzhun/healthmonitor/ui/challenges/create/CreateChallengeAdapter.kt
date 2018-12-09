@@ -4,14 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-
 import com.sashakhyzhun.healthmonitor.R
-import com.sashakhyzhun.healthmonitor.data.model.*
+import com.sashakhyzhun.healthmonitor.data.model.Challenge
+import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 
-class CreateChallengeAdapter (
+class CreateChallengeAdapter(
         private val callback: Callback,
         private val challenge: List<Challenge>,
         private val type: ChallengeType
@@ -25,8 +24,10 @@ class CreateChallengeAdapter (
     override fun onBindViewHolder(holder: MyView, position: Int) {
         val challenge = challenge[position]
 
+        holder.ivIcon.setImageResource(challenge.image)
+        holder.tvDuration.text = challenge.duration.toString()
+
         if (type == ChallengeType.DUEL) {
-            holder.ivIcon.visibility = View.VISIBLE
             holder.tvAddFriend.visibility = View.VISIBLE
             holder.tvAddFriend.setOnClickListener {
                 callback.addFriendClicked(challenge)
@@ -34,8 +35,8 @@ class CreateChallengeAdapter (
         }
 
         holder.tvChallengeTitle.text = challenge.title
-        holder.ibCreate.setOnClickListener {
 
+        holder.tvCreate.setOnClickListener {
             callback.create(challenge)
         }
 
@@ -48,12 +49,9 @@ class CreateChallengeAdapter (
         val ivIcon: ImageView = view.findViewById(R.id.iv_challenge_icon)
         val tvChallengeTitle: TextView = view.findViewById(R.id.tv_challenge_title)
         val tvAddFriend: TextView = view.findViewById(R.id.tv_add_friend)
-        //val tvRules: TextView = view.findViewById(R.id.tv_challenge_rules)
         val tvDuration: TextView = view.findViewById(R.id.tv_challenge_duration)
-        val ibCreate: ImageButton = view.findViewById(R.id.tv_button_create)
+        val tvCreate: TextView = view.findViewById(R.id.tv_button_create)
     }
-
-
 
 
     interface Callback {

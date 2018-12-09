@@ -69,9 +69,13 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
 
     override fun onItemLongPressed(item: Challenge) {
         val alertDialog = AlertDialog.Builder(context).create()
-        alertDialog.setTitle("Alert")
-        alertDialog.setMessage("Alert message to be shown")
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Check In") { dialog, _ ->
+        alertDialog.setTitle("how is it going?")
+        alertDialog.setMessage("Are you done for today?")
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, _ ->
+
+            item.doneForToday = true
+            item.lastCheckIn = System.currentTimeMillis()
+            
             challenges.remove(item)
             challenges.add(item)
             repo.saveAllInProgress(challenges)
