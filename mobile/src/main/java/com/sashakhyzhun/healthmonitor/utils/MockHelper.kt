@@ -26,27 +26,27 @@ fun fillSelfChallenges(): List<Challenge> {
 fun fillDuelChallenges(): List<Challenge> {
     return listOf(
             Challenge("No video games", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_playstation),
-            Challenge("Sharing your items", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
             Challenge("Doing morning exercise", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_golf),
-            Challenge("Watching out for animals", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("Getting rid of bad thinking", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("Doing homework", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("No smoking", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("No alcohol", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("Meditation", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE)
+            Challenge("Watching out for animals", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_cat),
+            Challenge("No smoking", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_no_smoking),
+            Challenge("Doing homework", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_homework),
+            Challenge("Sharing your items", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_share_food),
+            Challenge("Getting rid of bad thinking", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_bad_thinking),
+            Challenge("No alcohol", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_no_alcohol),
+            Challenge("Meditation", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_flower)
     )
 }
 
 fun fillFitChallenges(): List<Challenge> {
     return listOf(
-            Challenge("Aerobics", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Biking", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Dancing", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Running", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Walking", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Jumping Jack", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Push ups", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Gym", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE),
-            Challenge("Skating", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE)
+            Challenge("Aerobics", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_aerobics),
+            Challenge("Biking", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_bike),
+            Challenge("Push ups", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_push_up),
+            Challenge("Swimming", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_swim),
+            Challenge("Walking", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_walk),
+            Challenge("Running", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_run),
+            Challenge("Gym", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_gym),
+            Challenge("Jumping Jack", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_jump),
+            Challenge("Dancing", 21,false, 0L, "", ChallengeType.FIT, ChallengeStatus.EXAMPLE, R.drawable.ic_dance)
     )
 }
