@@ -10,7 +10,7 @@
         android:layout_height="60dp"
         android:id="@+id/image_view_dialog_icon"
         android:gravity="center"
-        android:text="Wear Todo | Feedback"
+        android:text="Health Monitor | Feedback"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/white"
         android:background="#0b5999"

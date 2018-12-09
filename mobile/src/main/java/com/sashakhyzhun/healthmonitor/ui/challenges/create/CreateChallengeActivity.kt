@@ -110,10 +110,9 @@ class CreateChallengeActivity : AppCompatActivity(), CreateChallengeAdapter.Call
             }
             dialog.dismiss()
         }
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { dialog, _ ->
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Cancel") { dialog, _ ->
             dialog.dismiss()
         }
-        //alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ -> dialog.dismiss() }
         alertDialog.show()
 
 

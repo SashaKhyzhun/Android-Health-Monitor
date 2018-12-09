@@ -33,7 +33,6 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
     private lateinit var fab: FloatingActionButton
     private lateinit var adapter: ChallengesAdapter
 
-
     private lateinit var repo: ChallengeRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,49 +49,10 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("onViewCreated")
-
         setUpView(view)
         updateUI()
-
-        if (challenges.isEmpty()) {
-            tvNoChallenges.visibility = View.VISIBLE
-        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        //updateUI()
-        println("onStart")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        println("onPause")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        println("onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        println("onStop")
-    }
-
-    private fun updateChallengeList() {
-        clearAllChallenges()
-        getAllChallenges()
-    }
-
-    private fun getAllChallenges() {
-        challenges.addAll(repo.getAllInProgress())
-    }
-
-    private fun clearAllChallenges() {
-        challenges.clear()
-    }
 
     private fun setUpView(view: View) {
         fab = view.findViewById(R.id.fab)
@@ -120,7 +80,7 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
             toast("check")
             dialog.dismiss()
         }
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Give Up") { dialog, _ ->
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Give Up") { dialog, _ ->
             challenges.remove(item)
             repo.saveAllInProgress(challenges)
 
@@ -128,7 +88,6 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
             toast("give up")
             dialog.dismiss()
         }
-        //alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ -> dialog.dismiss() }
         alertDialog.show()
     }
 
@@ -149,8 +108,6 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
     }
 
     private fun updateUI() {
-        //rvChallenges = view.findViewById(R.id.rv_challenges)
-
         challenges.clear()
         val all = repo.getAllInProgress()
         println("all=$all")
@@ -159,6 +116,10 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
         rvChallenges.adapter = adapter
         rvChallenges.layoutManager = LinearLayoutManager(context)
         adapter.notifyDataSetChanged()
+
+        if (challenges.isEmpty()) {
+            tvNoChallenges.visibility = View.VISIBLE
+        }
     }
 
 }

@@ -8,6 +8,8 @@ import android.net.Uri;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 
 /**
  * @author SashaKhyzhun
@@ -29,6 +31,11 @@ public class SessionManager {
     private static final String KEY_USER_HEIGHT = "key_user_height";
     private static final String KEY_USER_BIRTHDAY = "key_user_birthday";
     private static final String KEY_USER_GENDER = "key_user_gender";
+
+    private static final String KEY_USER_BLOOD = "key_user_blood";
+    private static final String KEY_USER_ALLERGY = "key_user_allergy";
+    private static final String KEY_USER_LIFESTYLE = "key_user_lifestyle";
+
 
     private static final int PRIVATE_MODE = 0;
     private static final int PREF_VERSION = 0;
@@ -180,5 +187,39 @@ public class SessionManager {
     public int getPrefVersion() {
         return preferences.getInt(KEY_PREF_VERSION, 0);
     }
+
+    public void setBlood(String blood) {
+        editor.putString(KEY_USER_BLOOD, blood);
+        editor.apply();
+        editor.commit();
+    }
+
+    @NotNull
+    public String getBlood() {
+        return preferences.getString(KEY_USER_BLOOD, "-2");
+    }
+
+    public void setAllergy(String allergy) {
+        editor.putString(KEY_USER_ALLERGY, allergy);
+        editor.apply();
+        editor.commit();
+    }
+
+    @NotNull
+    public String getAllergy() {
+        return preferences.getString(KEY_USER_ALLERGY, "Lactose intolerance");
+    }
+
+    public void setLifestyle(String lifestyle) {
+        editor.putString(KEY_USER_LIFESTYLE, lifestyle);
+        editor.apply();
+        editor.commit();
+    }
+
+    @Nullable
+    public String getLifestyle() {
+        return preferences.getString(KEY_USER_LIFESTYLE, "Normal");
+    }
+
 
 }

@@ -95,9 +95,9 @@ class ProfileFragment : Fragment() {
         tvUserBirthday.text = sp.birthday
         tvUserGender.text = sp.gender
 
-        //tvUserBlood.text = sp.getBlood()
-        //tvUserAllergy.text = sp.getAllergy()
-        //tvUserLifestyle.text = sp.getLifestyle()
+        tvUserBlood.text = sp.blood
+        tvUserAllergy.text = sp.allergy
+        tvUserLifestyle.text = sp.lifestyle
 
     }
 
