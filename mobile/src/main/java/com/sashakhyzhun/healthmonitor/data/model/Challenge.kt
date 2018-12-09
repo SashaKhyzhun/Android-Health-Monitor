@@ -1,5 +1,7 @@
 package com.sashakhyzhun.healthmonitor.data.model
 
+import com.sashakhyzhun.healthmonitor.R
+
 
 /**
  * Main Model
@@ -14,5 +16,6 @@ data class Challenge(
         var lastCheckIn: Long = 0L,
         var enemy: String = "",
         var type: ChallengeType,
-        var status: ChallengeStatus
+        var status: ChallengeStatus,
+        var image: Int = R.drawable.ic_sword
 )

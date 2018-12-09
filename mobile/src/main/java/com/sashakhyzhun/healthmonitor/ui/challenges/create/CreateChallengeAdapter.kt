@@ -50,7 +50,7 @@ class CreateChallengeAdapter (
         val tvAddFriend: TextView = view.findViewById(R.id.tv_add_friend)
         //val tvRules: TextView = view.findViewById(R.id.tv_challenge_rules)
         val tvDuration: TextView = view.findViewById(R.id.tv_challenge_duration)
-        val ibCreate: ImageButton = view.findViewById(R.id.image_button_create)
+        val ibCreate: ImageButton = view.findViewById(R.id.tv_button_create)
     }
 
 

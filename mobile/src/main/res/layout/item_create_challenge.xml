@@ -73,16 +73,23 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_add_friend" />
 
-        <ImageButton
-            android:id="@+id/image_button_create"
+        <TextView
+            android:text="start"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:id="@+id/tv_button_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:padding="8dp"
+            android:background="@drawable/round_button"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:srcCompat="?android:attr/fingerprintAuthDrawable" />
+            />
 
 
 

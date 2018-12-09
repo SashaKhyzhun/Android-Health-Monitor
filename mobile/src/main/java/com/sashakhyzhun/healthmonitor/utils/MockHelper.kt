@@ -1,5 +1,6 @@
 package com.sashakhyzhun.healthmonitor.utils
 
+import com.sashakhyzhun.healthmonitor.R
 import com.sashakhyzhun.healthmonitor.data.model.Challenge
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeStatus
 import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
@@ -10,23 +11,23 @@ import com.sashakhyzhun.healthmonitor.data.model.ChallengeType
 
 fun fillSelfChallenges(): List<Challenge> {
     return listOf(
-            Challenge("Taking stairs", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("Sugar free life", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("Drink more water", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("No smoking", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("Reading books", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("No TV", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("Meditation", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("No alcohol", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE),
-            Challenge("Getting rid of bad thinking", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE)
+            Challenge("Drink more water", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_drink_more_water),
+            Challenge("Taking stairs", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_stairs),
+            Challenge("Sugar free life", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_food),
+            Challenge("No smoking", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_no_smoking),
+            Challenge("Reading books", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_books),
+            Challenge("No TV", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_no_tv),
+            Challenge("Meditation", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_flower),
+            Challenge("No alcohol", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_no_alcohol),
+            Challenge("Getting rid of bad thinking", 21,false, 0L, "", ChallengeType.SELF, ChallengeStatus.EXAMPLE, R.drawable.ic_bad_thinking)
     )
 }
 
 fun fillDuelChallenges(): List<Challenge> {
     return listOf(
-            Challenge("No video games", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
+            Challenge("No video games", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_playstation),
             Challenge("Sharing your items", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
-            Challenge("Doing morning exercise", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
+            Challenge("Doing morning exercise", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE, R.drawable.ic_golf),
             Challenge("Watching out for animals", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
             Challenge("Getting rid of bad thinking", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
             Challenge("Doing homework", 21,false, 0L, "", ChallengeType.DUEL, ChallengeStatus.EXAMPLE),
