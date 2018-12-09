@@ -85,6 +85,8 @@ dependencies {
     // Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    // Ripple BG
+    implementation'com.skyfishjy.ripplebackground:library:1.0.1'
 
     // Test
     testImplementation 'junit:junit:4.12'
