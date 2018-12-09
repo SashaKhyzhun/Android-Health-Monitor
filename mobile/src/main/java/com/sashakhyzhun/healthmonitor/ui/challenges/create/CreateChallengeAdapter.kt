@@ -1,5 +1,6 @@
 package com.sashakhyzhun.healthmonitor.ui.challenges.create
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,12 @@ class CreateChallengeAdapter(
                 .inflate(R.layout.item_create_challenge, parent, false))
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyView, position: Int) {
         val challenge = challenge[position]
 
         holder.ivIcon.setImageResource(challenge.image)
-        holder.tvDuration.text = challenge.duration.toString()
+        holder.tvDuration.text = challenge.duration.toString() + " days"
 
         if (type == ChallengeType.DUEL) {
             holder.tvAddFriend.visibility = View.VISIBLE

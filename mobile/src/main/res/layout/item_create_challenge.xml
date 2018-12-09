@@ -51,7 +51,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/label_add_friend"
-            android:textColor="#47000000"
+            android:textColor="#82ffffff"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_challenge_title" />

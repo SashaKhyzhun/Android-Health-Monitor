@@ -69,7 +69,7 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
 
     override fun onItemLongPressed(item: Challenge) {
         val alertDialog = AlertDialog.Builder(context).create()
-        alertDialog.setTitle("how is it going?")
+        alertDialog.setTitle("How is it going?")
         alertDialog.setMessage("Are you done for today?")
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, _ ->
 
@@ -123,6 +123,8 @@ class ChallengesFragment : Fragment(), ChallengesAdapter.Callback {
 
         if (challenges.isEmpty()) {
             tvNoChallenges.visibility = View.VISIBLE
+        } else {
+            tvNoChallenges.visibility = View.GONE
         }
     }
 

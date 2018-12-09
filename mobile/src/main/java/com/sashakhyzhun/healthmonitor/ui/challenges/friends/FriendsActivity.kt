@@ -16,11 +16,14 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.FriendsCallback {
         setContentView(R.layout.activity_friends)
 
         val allFriends = mutableListOf<Friend>(
-                Friend("Krisz", "Molnar", R.drawable.barber_1),
-                Friend("Oleg", "Schwartz", R.drawable.barber_2),
-                Friend("Dmitriy", "Dudnyk", R.drawable.barber_3),
-                Friend("Ihor", "Yanovchik", R.drawable.barber_4)
+                Friend("Oleg", "Schwartz", R.drawable.ic_oleg, "Successfully finished 11 challenges"),
+                Friend("Dmitriy", "Dudnyk", R.drawable.ic_dima, "Usually burn 2k calories per day"),
+                Friend("Krisz", "Molnar", R.drawable.ic_kris, "Lost 8 kg during last two months"),
+                Friend("Ihor", "Yanovchik", R.drawable.ic_ihor, "Didn't smoke last 90 days"),
+                Friend("Vladimir", "Shatsky", R.drawable.barber_2, "Getting healthy with WeightLoss diet"),
+                Friend("Yury", "Drobitko", R.drawable.barber_3, "Ready for new challenges")
         )
+
         val adapter = FriendsAdapter(this, allFriends, this)
         val rv = findViewById<RecyclerView>(R.id.rv_friends)
         rv.adapter = adapter

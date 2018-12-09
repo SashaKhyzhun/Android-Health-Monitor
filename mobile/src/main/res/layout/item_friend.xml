@@ -13,8 +13,7 @@
         android:id="@+id/ivAvatar"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-
+        android:src="@drawable/ic_friend"
         />
 
     <TextView
@@ -24,7 +23,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="Kenny Miller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ivAvatar"
@@ -36,9 +35,19 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:text="has finished 5 challenges of 7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ivAvatar"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#38000000"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
+        />
+
 </android.support.constraint.ConstraintLayout>

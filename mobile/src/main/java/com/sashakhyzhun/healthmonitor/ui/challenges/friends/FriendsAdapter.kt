@@ -43,9 +43,9 @@ class FriendsAdapter(
 
         vh.ava.image = ctx.getDrawable(item.image)
         vh.name.text = "${item.firstName} ${item.lastName}"
-        vh.desc.text = "has good skills"
+        vh.desc.text = item.description
         vh.parent.setOnLongClickListener {
-            callback.onFriendSelected(item.firstName + item.lastName)
+            callback.onFriendSelected("${item.firstName} ${item.lastName}")
             true
         }
     }
