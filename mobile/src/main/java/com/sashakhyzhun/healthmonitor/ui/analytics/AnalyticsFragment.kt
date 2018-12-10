@@ -1,5 +1,7 @@
 package com.sashakhyzhun.healthmonitor.ui.analytics
 
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -10,39 +12,23 @@ import com.sashakhyzhun.healthmonitor.R
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.components.XAxis
 import android.support.v4.content.ContextCompat
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.*
+import org.jetbrains.anko.support.v4.toast
 
 
 class AnalyticsFragment : Fragment() {
 
-    /**
-     * Analyze:
-     *
-     * Weight
-     * Heart rate (bpm)
-     * Stress level
-     *
-     */
-
-    /**
-     * Store:
-     *
-     * Calories
-     * Steps
-     * Energy
-     * Productivity
-     * Sleep
-     * Weight
-     *
-     *
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, bundle: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_analytics, group, false)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_analytics, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val chartWalking: BarChart = view.findViewById(R.id.barChartWalking)
         createWalkingChart(chartWalking)
@@ -56,9 +42,35 @@ class AnalyticsFragment : Fragment() {
         val chartWeight: BarChart = view.findViewById(R.id.barChartHeartWeight)
         createWeightChart(chartWeight)
 
-        return view
+        view.findViewById<LinearLayout>(R.id.layout_log_stress_level).setOnClickListener {
+            logStressLevel(context!!)
+        }
+
     }
 
+    private fun logStressLevel(ctx: Context) {
+        val dialog = Dialog(ctx)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_log_stress_level)
+
+        val editText: EditText = dialog.findViewById(R.id.et_stress_level)
+
+        dialog.findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.findViewById<Button>(R.id.button_send).setOnClickListener {
+            val level = editText.text.toString().toInt()
+            if (level in 0..9) {
+                toast("Great, we saved your data!")
+            } else {
+                toast("Please, put the number from 0 to 10")
+            }
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 
     private fun createWalkingChart(chart: BarChart) {
         val entries = ArrayList<BarEntry>()
@@ -247,7 +259,5 @@ class AnalyticsFragment : Fragment() {
         //refresh
         chart.invalidate()
     }
-
-
 
 }

@@ -13,6 +13,7 @@
 
     <string name="about_text_hey_there">Hey there, this app\ncreated, designed and developed \nby Sasha Khyzhun</string>
     <string name="about_text_who_we_are">We are indie developer studio. \nWe like to play games and even more to make them</string>
+    <string name="please_estimate_your_stress_level_from_0_to_9">Please, estimate your \nstress level from 0 to 9</string>
 
 
 </resources>
