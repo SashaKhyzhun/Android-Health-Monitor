@@ -4,9 +4,16 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Heart rate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Measure your heart rate"
+        android:background="@color/primary"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        />
 
 
     <com.skyfishjy.library.RippleBackground

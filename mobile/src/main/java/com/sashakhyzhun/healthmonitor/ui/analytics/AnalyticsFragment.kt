@@ -16,6 +16,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.*
 import org.jetbrains.anko.support.v4.toast
@@ -42,29 +43,41 @@ class AnalyticsFragment : Fragment() {
         val chartWeight: BarChart = view.findViewById(R.id.barChartHeartWeight)
         createWeightChart(chartWeight)
 
+        view.findViewById<LinearLayout>(R.id.layout_log_height).setOnClickListener {
+            logData(context!!, getString(R.string.please_estimate_your_height), 0..200)
+        }
+        view.findViewById<LinearLayout>(R.id.layout_log_weight).setOnClickListener {
+            logData(context!!, getString(R.string.please_estimate_your_weight), 0..250)
+        }
         view.findViewById<LinearLayout>(R.id.layout_log_stress_level).setOnClickListener {
-            logStressLevel(context!!)
+            logData(context!!, getString(R.string.please_estimate_your_stress_level_from_0_to_9), 0..9)
+        }
+        view.findViewById<LinearLayout>(R.id.layout_log_heart_rate).setOnClickListener {
+            logData(context!!, getString(R.string.please_estimate_your_bpm_from_0_to_200), 0..200)
         }
 
     }
 
-    private fun logStressLevel(ctx: Context) {
+
+    private fun logData(ctx: Context, title: String, intRange: IntRange) {
         val dialog = Dialog(ctx)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_log_stress_level)
 
-        val editText: EditText = dialog.findViewById(R.id.et_stress_level)
+        val textView: TextView = dialog.findViewById(R.id.textView2)
+        textView.text = title
 
+        val editText: EditText = dialog.findViewById(R.id.et_stress_level)
         dialog.findViewById<Button>(R.id.button_cancel).setOnClickListener {
             dialog.dismiss()
         }
         dialog.findViewById<Button>(R.id.button_send).setOnClickListener {
-            val level = editText.text.toString().toInt()
-            if (level in 0..9) {
+            val input = editText.text.toString().toInt()
+            if (input in intRange) {
                 toast("Great, we saved your data!")
             } else {
-                toast("Please, put the number from 0 to 10")
+                toast("Please, put correct value")
             }
             dialog.dismiss()
         }

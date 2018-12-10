@@ -6,17 +6,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-
-    <uses-permission android:name="com.google.activity.sample" />
-    <uses-permission android:name="com.google.calories.expended" />
-    <uses-permission android:name="com.google.step_count.cadence" />
-    <uses-permission android:name="com.google.heart_rate.bpm" />
-    <uses-permission android:name="com.google.heart_rate.summary" />
-    <uses-permission android:name="com.google.height" />
-    <uses-permission android:name="com.google.weight" />
-    <uses-permission android:name="com.google.weight.summary" />
-    <uses-permission android:name="com.google.nutrition.item" />
+    <!--<uses-permission android:name="com.google.activity.sample" />-->
+    <!--<uses-permission android:name="com.google.calories.expended" />-->
+    <!--<uses-permission android:name="com.google.step_count.cadence" />-->
+    <!--<uses-permission android:name="com.google.heart_rate.bpm" />-->
+    <!--<uses-permission android:name="com.google.heart_rate.summary" />-->
+    <!--<uses-permission android:name="com.google.height" />-->
+    <!--<uses-permission android:name="com.google.weight" />-->
+    <!--<uses-permission android:name="com.google.weight.summary" />-->
+    <!--<uses-permission android:name="com.google.nutrition.item" />-->
 
     <!--
         Permissions for:

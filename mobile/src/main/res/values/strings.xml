@@ -14,6 +14,9 @@
     <string name="about_text_hey_there">Hey there, this app\ncreated, designed and developed \nby Sasha Khyzhun</string>
     <string name="about_text_who_we_are">We are indie developer studio. \nWe like to play games and even more to make them</string>
     <string name="please_estimate_your_stress_level_from_0_to_9">Please, estimate your \nstress level from 0 to 9</string>
+    <string name="please_estimate_your_bpm_from_0_to_200">Please, estimate your \nbpm from 0 to 200</string>
+    <string name="please_estimate_your_height">Please, estimate your height</string>
+    <string name="please_estimate_your_weight">Please, estimate your weight</string>
 
 
 </resources>

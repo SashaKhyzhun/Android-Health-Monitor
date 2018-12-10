@@ -241,7 +241,7 @@
                 android:id="@+id/tvHeartRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Log your heart rate"
+                android:text="Log your BPM"
                 android:textStyle="normal"
                 android:textColor="@color/primary_text"
                 android:padding="8dp"
