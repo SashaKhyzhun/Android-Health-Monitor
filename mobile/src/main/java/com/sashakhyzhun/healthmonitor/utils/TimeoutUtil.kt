@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.android.UI
 object TimeoutUtil {
 
 
-    var cameraTimeoutMillis: Long = 30_000L
+    var cameraTimeoutMillis: Long = 10_000L
 
     /**
      * Coroutine score for timer
@@ -22,9 +22,9 @@ object TimeoutUtil {
     fun startCameraTimeout(action: () -> Unit) {
         job = CoroutineScope(Dispatchers.Default).launch {
             delay(cameraTimeoutMillis)
-//            launch(UI) {
+            launch(UI) {
                 action()
-//            }
+            }
         }
     }
 

@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tvUserSteps"
-                        android:text="0"
+                        android:text="2,297"
                         android:textColor="#FFFFFF"
                         android:textAlignment="center"
                         android:textSize="16sp"
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tvUserCal"
-                        android:text="0"
+                        android:text="1,640"
                         android:textColor="#FFFFFF"
                         android:textAlignment="center"
                         android:textSize="16sp"
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tvUserKm"
-                        android:text="0"
+                        android:text="1,3"
                         android:textColor="#FFFFFF"
                         android:textAlignment="center"
                         android:textSize="16sp"
