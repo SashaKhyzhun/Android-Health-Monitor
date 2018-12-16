@@ -39,4 +39,8 @@ dependencies {
 
     implementation 'org.jraf:android-wear-color-picker:1.0.1'
 
+    // UI & Images
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
 }

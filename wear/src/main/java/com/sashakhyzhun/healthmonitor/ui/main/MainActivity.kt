@@ -2,6 +2,9 @@ package com.sashakhyzhun.healthmonitor.ui.main
 
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.sashakhyzhun.healthmonitor.R
 
 class MainActivity : WearableActivity() {
@@ -12,5 +15,11 @@ class MainActivity : WearableActivity() {
 
         // Enables Always-on
         setAmbientEnabled()
+
+        val image = findViewById<ImageView>(R.id.ivUserPhoto)
+        Glide.with(this)
+                .load(R.drawable.ic_my_profile)
+                .apply(RequestOptions().circleCrop())
+                .into(image)
     }
 }
